@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MyPart.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DatabaseRegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ProgramController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/AI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Clan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/AdminMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Captchscii.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/GameMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/HistoryMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/MainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/ProfileMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/ShopMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/digits.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2imlShWKXYJOlxOzBLawiVlOg9j" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Ehsan/studies/uni/sem 6/OOP/HW/HW4/Upload",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Ehsan\studies\uni\sem 6\OOP\Project\Phase 1\MyPart\src" />
+      <recent name="D:\Ehsan\studies\uni\sem 6\OOP\Project\Phase 1\MyPart\src\View" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="" />
+      <created>1720103635772</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720103635772</updated>
+      <workItem from="1720103636885" duration="7365000" />
+      <workItem from="1720123976386" duration="7079000" />
+      <workItem from="1720198807118" duration="6673000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>
