@@ -1,6 +1,6 @@
 package Controller;
 
-import Controller.DatabaseController.DatabaseRegisterController;
+import Controller.DatabaseController.DataBaseController;
 import Model.User;
 import View.Captchscii;
 import View.RegisterMenu;
@@ -12,9 +12,8 @@ import java.util.regex.Pattern;
 
 public class RegisterController {
     Scanner scanner = new Scanner(System.in);
-    private RegisterController registerController = new RegisterController();
     RegisterMenu registerMenu = new RegisterMenu();
-    DatabaseRegisterController databaseRegisterController = new DatabaseRegisterController();
+    DataBaseController DataBaseController = new DataBaseController();
     // Sign up functions
     public void createUser(Matcher matcher){
         if (User.getLoggedInUser() != null){
@@ -59,7 +58,7 @@ public class RegisterController {
 
         // adding user to app and database
         User.addUser(newUser);
-        databaseRegisterController.addUser(newUser);
+        DataBaseController.addUser(newUser);
     }
     private Matcher askSecurityQuestion(){
         String input = null;
@@ -84,8 +83,8 @@ public class RegisterController {
             System.out.println("Please fill all requirements to Sign up");
             return false;
         }
-        else if (validatePasswordLetters(password, "^[A-Za-z0-9_]+$")){
-            System.out.println("your password may only contain  uppercase letters, lowercase letters, numbers, and underscores");
+        else if (validate(username, "^[A-Za-z0-9_]+$")){
+            System.out.println("your username may only contain uppercase letters, lowercase letters, numbers, and underscores");
             System.out.println("Please act accordingly");
             return false;
         }
@@ -113,7 +112,7 @@ public class RegisterController {
     private boolean weakPassword(String password){
         if (password.length() < 8)
             return true;
-        else return !validatePasswordLetters(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*_).+$");
+        else return !validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$");
     }
     private boolean userExists(String username){
         for (User user : User.getUsers())
@@ -121,9 +120,9 @@ public class RegisterController {
                 return true;
         return false;
     }
-    private boolean validatePasswordLetters(String password, String regex){
+    private boolean validate(String input, String regex){
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(password);
+        Matcher matcher = pattern.matcher(input);
         return !matcher.matches();
     }
     private boolean emptyValue(String username, String password, String confirmPassword, String email, String nickName){
@@ -170,7 +169,7 @@ public class RegisterController {
 
         // adding user to app and database
         User.addUser(newUser);
-        databaseRegisterController.addUser(newUser);
+        DataBaseController.addUser(newUser);
     }
     public static String generateRandomPass() {
         String uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -201,7 +200,6 @@ public class RegisterController {
 
         return randomString.toString();
     }
-
     // Login functions
     public void logIn(Matcher matcher){
         if (User.getLoggedInUser() != null){
@@ -219,7 +217,6 @@ public class RegisterController {
 
         User.setLoggedInUser(user);
     }
-
     private User findUser(String username, String password){
         for (User user : User.getUsers())
             if (user.getUserName().equals(username))
@@ -235,7 +232,7 @@ public class RegisterController {
         return null;
     }
     public void forgotPassword(Matcher matcher){
-        
+
         String username = matcher.group("username");
         User user = null;
 
@@ -263,9 +260,8 @@ public class RegisterController {
             newPass = scanner.nextLine();
         }
         user.setPassword(newPass);
-        databaseRegisterController.updateUser(user);
+        DataBaseController.updateUserPassword(user.getUserName(), user.getPassword());
     }
-
     // log out
     public void logOut(){
         User user = User.getLoggedInUser();

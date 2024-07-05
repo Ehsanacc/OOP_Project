@@ -5,43 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MyPart.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DatabaseRegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ProfileController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ProgramController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/AI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Clan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/AdminMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Captchscii.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/GameMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/HistoryMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/MainMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/ProfileMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/ShopMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/digits.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DatabaseRegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enum/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ProfileMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +79,7 @@
       <updated>1720103635772</updated>
       <workItem from="1720103636885" duration="7365000" />
       <workItem from="1720123976386" duration="7079000" />
-      <workItem from="1720198807118" duration="6673000" />
+      <workItem from="1720198807118" duration="13713000" />
     </task>
     <servers />
   </component>

@@ -34,7 +34,14 @@ public class User {
 
     @Override
     public String toString() {
-        return super.toString();
+        return """
+                \tUsername: %s
+                \tPassword: %s
+                \tNickname: %s
+                \tEmail: %s
+                \tSecurity Question: %s
+                \tSecurity Answer: %s
+                """.formatted(this.userName, this.Password, this.nickname, this.email, this.question, this.answer);
     }
 
     public void heal(){this.HP+=20;}
