@@ -18,20 +18,20 @@ public class DataBaseController {
             System.out.println("Database couldn't connect");
             System.out.println(e.getMessage());
         }
-//        String createTableSQL = "CREATE TABLE IF NOT EXISTS users (" +
-//                "username TEXT PRIMARY KEY," +
-//                "password TEXT NOT NULL," +
-//                "nickname TEXT NOT NULL," +
-//                "email TEXT NOT NULL," +
-//                "question TEXT NOT NULL," +
-//                "answer TEXT NOT NULL" +
-//                ");";
-//        try {
-//            Statement statement = connection.createStatement();
-//            statement.execute(createTableSQL);
-//        } catch (SQLException e){
-//            System.out.println(e.getMessage());
-//        }
+        String createTableSQL = "CREATE TABLE IF NOT EXISTS users (" +
+                "username TEXT PRIMARY KEY," +
+                "password TEXT NOT NULL," +
+                "nickname TEXT NOT NULL," +
+                "email TEXT NOT NULL," +
+                "question TEXT NOT NULL," +
+                "answer TEXT NOT NULL" +
+                ");";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(createTableSQL);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -41,10 +41,18 @@ public class DataBaseController {
                     + user.getUserName() + "', '" + user.getPassword() + "', '" + user.getNickname() + "', '"
                     + user.getEmail() + "', '" + user.getQuestion() + "', '"
                     + user.getAnswer() + "')";
-            java.sql.Statement st = connection.createStatement();
+            Statement st = connection.createStatement();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println("exception in insertUser in Database \n" + e.getMessage());
+        }
+
+        try {
+            String query = "CREATE TABLE "+user.getUserName()+" ()";
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException exception){
+            System.out.println(exception.getMessage());
         }
     }
 
