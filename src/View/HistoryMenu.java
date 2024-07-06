@@ -1,9 +1,7 @@
 package View;
 
 import Model.History;
-import Model.User;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class HistoryMenu extends Menu{
@@ -16,7 +14,7 @@ public class HistoryMenu extends Menu{
             if (histories.get(i).isWon())   res="Won";
             else res="Lost";
             System.out.println("|"+histories.get(i).getPrize()+"|"+histories.get(i).getOpponentLevel()+" "+
-                    histories.get(i).getOpponent().getNickname()+"|"+res+"|"+histories.get(i).getTime()+"|");
+                    histories.get(i).getOpponentName()+"|"+res+"|"+histories.get(i).getDate()+"|");
         }
     }
     public void back(){
@@ -43,8 +41,8 @@ public class HistoryMenu extends Menu{
         switch (base){
             case 0:
                 histories.sort((o1, o2) -> {
-                    if (up) return o1.getTime().compareTo(o2.getTime());
-                    return o2.getTime().compareTo(o1.getTime());
+                    if (up) return o1.getDate().compareTo(o2.getDate());
+                    return o2.getDate().compareTo(o1.getDate());
                 });
                 printHistory(curr);
                 break;
@@ -64,8 +62,8 @@ public class HistoryMenu extends Menu{
                 break;
             case 2:
                 histories.sort((o1, o2) -> {
-                    if (up) return o1.getOpponent().getNickname().compareTo(o2.getOpponent().getNickname());
-                    return o2.getOpponent().getNickname().compareTo(o1.getOpponent().getNickname());
+                    if (up) return o1.getOpponentName().compareTo(o2.getOpponentName());
+                    return o2.getOpponentName().compareTo(o1.getOpponentName());
                 });
                 printHistory(curr);
                 break;

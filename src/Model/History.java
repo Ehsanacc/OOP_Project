@@ -1,28 +1,51 @@
 package Model;
 
+import java.sql.Date;
 import java.sql.Time;
 
 public class History {
-    private User opponent;
-    private Time time;
+    private String opponentName;
+    private Date date;
     private boolean won;
     private int opponentLevel;
     private int prize;
 
-    public History(User opponent, Time time, boolean won, int opponentLevel, int prize) {
-        this.opponent = opponent;
-        this.time = time;
+    public History(String opponentName, Date date, boolean won, int opponentLevel, int prize) {
+        this.opponentName = opponentName;
+        this.date = date;
         this.won = won;
         this.opponentLevel = opponentLevel;
         this.prize = prize;
     }
 
-    public User getOpponent() {
-        return opponent;
+    public String getOpponentName() {
+        return opponentName;
     }
-    public Time getTime() {
-        return time;
+
+    public void setOpponentName(String opponentName) {
+        this.opponentName = opponentName;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
+    }
+
+    public void setOpponentLevel(int opponentLevel) {
+        this.opponentLevel = opponentLevel;
+    }
+
+    public void setPrize(int prize) {
+        this.prize = prize;
+    }
+
     public boolean isWon() {
         return won;
     }

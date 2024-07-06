@@ -1,7 +1,6 @@
 package Controller;
 
 import Controller.DatabaseController.DataBaseController;
-import Model.Game;
 import Model.User;
 import View.Captchscii;
 import View.GameMenu;
@@ -50,17 +49,22 @@ public class RegisterController {
         Captchscii captchscii = new Captchscii(6);
         String captcha = captchscii.getCaptcha();
         String trueAns = captchscii.getTrueStr();
+        System.out.println(captcha);
+        System.out.println(trueAns);
         System.out.println("you need to answer this captcha correctly to create the user");
         String ans = scanner.nextLine();
-        if (ans.equals(trueAns))
-            System.out.println("Answered Captcha correctly.\nUser created!");
+        if (ans.trim().equalsIgnoreCase(trueAns.trim()))
+            System.out.println("Answered Captcha correctly.\tUser created!");
         else {
+            System.out.println(ans.trim());
+            System.out.println(trueAns.trim());
             System.out.println("Wrong Captcha! you will be sent to start as a punishment");
             registerMenu.run();
         }
 
         // add user to program
         User newUser = new User(username, password, nickname, email, question, answer);
+//        System.out.println(newUser.toString());
 
         // adding user to app and database
         User.addUser(newUser);
@@ -71,12 +75,14 @@ public class RegisterController {
         String question = null;
         String answer = null;
         System.out.println("""
-                User created successfully. Please choose a security question :
+                Please choose a security question :
                 • 1-What is your father’s name ?
                 • 2-What is your favourite color ?
                 • 3-What was the name of your first pet?""");
+        System.out.println("Your answer should be in this format\nquestion pick -q <question-number> -a <answer> -c <answer-confirm>");
         input = scanner.nextLine();
-        Matcher matcher = Pattern.compile("question pick -q (?<questionNumber>.+) -a (?<answer>.+) -c (?<answerConfirm>.+)").matcher(input);
+        Matcher matcher = Pattern.compile("question pick -q (?<questionNumber>[^\s]+) -a (?<answer>[^\s]+) -c (?<answerConfirm>[^\s]+)").matcher(input);
+        matcher.find();
         while (!matcher.group("answer").equals(matcher.group("answerConfirm"))){
             System.out.println("your answer and its confirmation should be the same!");
             input = scanner.nextLine();
@@ -106,6 +112,10 @@ public class RegisterController {
                     "\tcontain at least one lowercase letter, one uppercase letter, and one underscore");
             return false;
         }
+        else if (!password.equals(confirmPassword)){
+            System.out.println("your password and password confirmation do not match");
+            return false;
+        }
         else if (invalidEmail(email)){
             System.out.println("invalid email\nPlease fill both username and domain parts");
             return false;
@@ -118,7 +128,7 @@ public class RegisterController {
     private boolean weakPassword(String password){
         if (password.length() < 8)
             return true;
-        else return !validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$");
+        else return validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$");
     }
     private boolean userExists(String username){
         for (User user : User.getUsers())

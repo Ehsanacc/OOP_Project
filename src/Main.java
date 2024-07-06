@@ -4,7 +4,7 @@ import View.GameMenu;
 
 public class Main {
     public static void main(String[] args) {
-        MainMenu gameMenu = new MainMenu();
-        gameMenu.run();
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.run();
     }
 }

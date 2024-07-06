@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Captchscii {
-    private String filepath = "D:/Ehsan/studies/uni/sem 6/OOP/Project/Phase 1/MyPart/src/View/digits.txt";
+    private String filepath = "D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/src/View/digits.txt";
     private int length;
     private String captcha;
     private String trueStr;

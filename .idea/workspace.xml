@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/slf4j-api-1.7.36.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/sqlite-jdbc-3.46.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyPart.iml" beforeDir="false" afterPath="$PROJECT_DIR$/MyPart.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Enum/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/History.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Captchscii.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Captchscii.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/HistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/HistoryMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,15 +55,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart",
+    "last_opened_file_path": "D:/Ehsan/studies/uni/sem_6/OOP/HW/untitled",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -60,11 +74,19 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Ehsan\studies\uni\sem_6\OOP\Project\Phase_1\MyPart\src\Controller\DatabaseController" />
       <recent name="D:\Ehsan\studies\uni\sem 6\OOP\Project\Phase 1\MyPart\src" />
       <recent name="D:\Ehsan\studies\uni\sem 6\OOP\Project\Phase 1\MyPart\src\View" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Unnamed">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="MyPart" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="MyPart" />
@@ -72,6 +94,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -86,7 +113,9 @@
       <workItem from="1720198807118" duration="19344000" />
       <workItem from="1720245245036" duration="20641000" />
       <workItem from="1720270033789" duration="12000" />
-      <workItem from="1720270166738" duration="306000" />
+      <workItem from="1720270166738" duration="7135000" />
+      <workItem from="1720278664178" duration="726000" />
+      <workItem from="1720297653487" duration="5379000" />
     </task>
     <servers />
   </component>

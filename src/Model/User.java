@@ -16,18 +16,22 @@ public class User {
     private int gold;
     private int HP;
     private int character;
-    private int clanCode=-1;
+    private int clanCode;
     private boolean didClanWar=false;
     ArrayList<Card> cards = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
 
     public User(String userName, String password, String nickname, String email, String question, String answer) {
         this.userName = userName;
-        Password = password;
+        this.Password = password;
         this.nickname = nickname;
         this.email = email;
         this.question = question;
         this.answer = answer;
+        this.XP = 0;
+        this.gold = 150;
+        this.clanCode = -1;
+        this.lvl = 1;
     }
 
     public User(String userName, String password, String nickname, String email, int lvl, String question, String answer, int XP, int gold, ArrayList<Card> cards) {

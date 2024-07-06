@@ -1,27 +1,27 @@
 package Enum;
 
 public enum Commands {
-    selectCard("-Select card number (?<number>.+) player (?<player>.+)"),
-    placeCard("-Placing card number (?<number>.+) in block (?<block>.+)"),
-    whichCard("-Card number (?<number>.+)"),
+    selectCard("-Select card number (?<number>[^\s]+) player (?<player>[^\s]+)"),
+    placeCard("-Placing card number (?<number>[^\s]+) in block (?<block>[^\s]+"),
+    whichCard("-Card number (?<number>[^\s]+)"),
     startGame("-Start game"),
     selectMode("-Select mode number (?<number>\\d)"),
     selectCharacter("-Select character number (?<number>.+) player (?<player>.+)"),
-    betAmount("-Betting amount (?<number>.+)"),
-    createClan("-Create a clan(?<name>.+)"),
+    betAmount("-Betting amount (?<number>[^\s]+)"),
+    createClan("-Create a clan(?<name>[^\s]+)"),
     myClan("-My clan"),
     allClans("-All clans"),
-    joinClan("-Join (?<code>\\d)"),
-    playClan("-Play (?<code>\\d)"),
+    joinClan("-Join (?<code>[\\d]+)"),
+    playClan("-Play (?<code>[\\d]+)"),
     playClanWar("-Play ClanWar"),
-    userCreate("user create -u (?<username>.+) -p (?<password>.+) (?<passwordConfirmation>.+) –email (?<email>.+) -n (?<nickname>.+)"),
-    userCreateRandom("user create -u (?<username>.+) -p random –email (?<email>.+) -n (?<nickname>.+)"),
-    logIn("user login -u (?<username>.+) -p (?<password>.+)"),
-    forgotPassword("Forgot my password -u (?<username>.+)"),
-    changeUserName("Profile change -u (?<username>.+)"),
-    changeNickname("Profile change -u (?<nickname>.+)"),
-    changePassword("profile change password -o (?<oldPassword>.+) -n (?<newPassword>.+)"),
-    changeEmail("profile change -e (?<email>.+)")
+    userCreate("user create -u (?<username>[^\s]+) -p (?<password>[^\s]+) -r (?<passwordConfirmation>[^\s]+) -e (?<email>[^\s]+) -n (?<nickname>[^\s]+)"),
+    userCreateRandom("user create -u (?<username>[^\s]+) -p random –e (?<email>[^\s]+) -n (?<nickname>[^\s]+)"),
+    logIn("user login -u (?<username>[^\s]+) -p (?<password>[^\s]+)"),
+    forgotPassword("Forgot my password -u (?<username>[^\s]+)"),
+    changeUserName("Profile change -u (?<username>[^\s]+)"),
+    changeNickname("Profile change -u (?<nickname>[^\s]+)"),
+    changePassword("profile change password -o (?<oldPassword>[^\s]+) -n (?<newPassword>[^\s]+)"),
+    changeEmail("profile change -e (?<email>[^\s]+)")
     ;
 
 

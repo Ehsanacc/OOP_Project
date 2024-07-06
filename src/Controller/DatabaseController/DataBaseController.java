@@ -2,6 +2,7 @@ package Controller.DatabaseController;
 
 import Model.Card;
 import Model.Game;
+import Model.History;
 import Model.User;
 
 import javax.swing.plaf.nimbus.State;
@@ -28,16 +29,30 @@ public class DataBaseController {
 
     public void addUser(User user){
         try {
-            String query = "INSERT INTO users (username, password, nickname, email, question, answer) VALUES ('"
-                    + user.getUserName() + "', '" + user.getPassword() + "', '" + user.getNickname() + "', '"
-                    + user.getEmail() + "', '" + user.getQuestion() + "', '"
-                    + user.getAnswer() + "')";
+            String query = "INSERT INTO users (username, password, nickname, email, question, answer, lvl, xp, gold, clan_code) VALUES ('"
+                    + user.getUserName() + "' , '" + user.getPassword() + "' , '" + user.getNickname() + "' , '"
+                    + user.getEmail() + "' , '" + user.getQuestion() + "' , '"
+                    + user.getAnswer() + "' , "+user.getLvl()+" , "+user.getXP()+" , "+user.getGold()+" , "+user.getClanCode()+");";
             Statement st = connection.createStatement();
             st.executeUpdate(query);
         } catch (Exception e) {
             System.out.println("exception in insertUser in Database \n" + e.getMessage());
         }
+
         GiftPack(user);
+        System.out.println("And here");
+        createHistory(user.getUserName());
+    }
+
+    private void createHistory(String username){
+        try {
+            String query = "create table if not exists "+username+" (dat date not null , opponentName text not null , won bit not null" +
+                    " , opponentLvl int not null, prize int not null)";
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+        } catch (SQLException exception){
+            System.out.println(exception.getMessage());
+        }
     }
 
     public void updateUserEmail(String username, String email){
@@ -94,8 +109,8 @@ public class DataBaseController {
         }
         try {
             String query = "INSERT INTO "+user.getUserName()+" (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded)" +
-                    " values ("+name+" "+point+" "+duration+" "+dmg+" "+ch+" "+isSpell+" "+reqLVL+
-                    " "+upgrade_cost+" "+0+");";
+                    " values ("+name+" , "+point+" , "+duration+" , "+dmg+" , "+ch+" , "+isSpell+" , "+reqLVL+
+                    " , "+upgrade_cost+" , "+0+");";
             Statement statement = connection.createStatement();
             statement.execute(query);
         } catch (SQLException e){
@@ -264,7 +279,7 @@ public class DataBaseController {
             String query = "update main.users set main.users.username = "+username+" , main.users.password = "
                     +password+" , main.users.nickname = "+nickname+" , main.users.email = "+email+
                     ", main.users.question = "+question+" , main.users.answer = "+answer+" , lvl = "+lvl+
-                    " , xp = "+xp+" , gold = "+gold+" , clan_code = "+clanCode;
+                    " , xp = "+xp+" , gold = "+gold+" , clan_code = "+clanCode+" where username = "+username;
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
         } catch (SQLException e){
@@ -272,8 +287,50 @@ public class DataBaseController {
         }
     }
 
-    public void getUserHistory(String userName){}
+    public void getUserHistory(String userName){
+        try {
+            String query = "select * from "+userName+";";
+            Statement statement = connection.createStatement();
+            statement.execute(query);
+            ResultSet rs = statement.getResultSet();
+            String opponentName;
+            Date date;
+            boolean won;
+            int opponentLvl, prize;
+            while (rs.next()) {
+                opponentName = rs.getString("opponentName");
+                date = rs.getDate("dat");
+                won = rs.getBoolean("won");
+                opponentLvl = rs.getInt("opponentLvl");
+                prize = rs.getInt("prize");
+                System.out.println("user: " + userName + " -- opponent: " + opponentName + " -- date: " + date + " -- won: " + won + " -- " +
+                        "opponentLvl: " + opponentLvl + " -- prize: " + prize);
+            }
+        } catch (SQLException exception){
+            System.out.println(exception.getMessage());
+        }
+    }
 
-    public void addUserHistory(Game gameResult){}
+    public void addUserHistory(History gameResult) {
+        Date date = gameResult.getDate();
+        String opponentName = gameResult.getOpponentName();
+        boolean won = gameResult.isWon();
+        int opponentLvl = gameResult.getOpponentLevel();
+        int prize = gameResult.getPrize();
+
+        try {
+            String query = "insert into " + "helia" + " (dat, opponentName, won, opponentLvl, prize)"
+                    + " values (" + date + " , '" + opponentName + "' , " + won + " , " + opponentLvl + " , " + prize + ");";
+            System.out.println(query);
+            String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
+            Connection connection = DriverManager.getConnection(url);
+            Statement statement = connection.createStatement();
+            System.out.println("check 1");
+            statement.executeUpdate(query);
+            System.out.println("check 2");
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
 
 }
