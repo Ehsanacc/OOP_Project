@@ -1,8 +1,10 @@
 package Controller;
 
 import Controller.DatabaseController.DataBaseController;
+import Model.Game;
 import Model.User;
 import View.Captchscii;
+import View.GameMenu;
 import View.RegisterMenu;
 
 import java.util.Random;
@@ -11,6 +13,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterController {
+    public RegisterController(){
+        new DataBaseController().startApp();
+    }
     Scanner scanner = new Scanner(System.in);
     RegisterMenu registerMenu = new RegisterMenu();
     DataBaseController DataBaseController = new DataBaseController();
@@ -201,23 +206,40 @@ public class RegisterController {
         return randomString.toString();
     }
     // Login functions
-    public void logIn(Matcher matcher){
-        if (User.getLoggedInUser() != null){
-            System.out.println("Some other user has already logged in.");
-            registerMenu.run();
+    public void logIn(Matcher matcher, boolean callingFromRegister){
+        if (callingFromRegister) {
+            if (User.getLoggedInUser() != null){
+                System.out.println("Some other user has already logged in.");
+                registerMenu.run();
+            }
+            String username = matcher.group("username");
+            String password = matcher.group("password");
+            User user = null;
+
+            user = findUser(username, password);
+            // TODO: implement the ban system when the user makes a mistake in logging in
+            if (user == null)
+                registerMenu.run();
+
+            User.setLoggedInUser(user);
+        } else {
+            if (User.getOpponent() != null){
+                System.out.println("Some other user was already chosen as opponent");
+                new GameMenu().run();
+            }
+            String username = matcher.group("username");
+            String password = matcher.group("password");
+            User user = null;
+
+            user = findUser(username, password);
+            // TODO: implement the ban system when the user makes a mistake in logging in
+            if (user == null)
+                new GameMenu().run();
+
+            User.setOpponent(user);
         }
-        String username = matcher.group("username");
-        String password = matcher.group("password");
-        User user = null;
-
-        user = findUser(username, password);
-        // TODO: implement the ban system when the user makes a mistake in logging in
-        if (user == null)
-            registerMenu.run();
-
-        User.setLoggedInUser(user);
     }
-    private User findUser(String username, String password){
+    public User findUser(String username, String password){
         for (User user : User.getUsers())
             if (user.getUserName().equals(username))
                 if (user.getPassword().equals(password)) {

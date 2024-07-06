@@ -41,7 +41,9 @@ public class GameController {
         hide2=false;
     }
 
-    public void selectModes(Matcher matcher){}
+    public void selectModes(Matcher matcher){
+
+    }
 
     public void selectCharacter(Matcher matcher){}
 

@@ -23,7 +23,7 @@ public class RegisterMenu extends Menu{
         else if ((matcher = getCommandMatcher(input, Commands.userCreateRandom.regex)) != null)
             registerController.createUserRandom(matcher);
         else if ((matcher = getCommandMatcher(input, Commands.logIn.regex)) != null)
-            registerController.logIn(matcher);
+            registerController.logIn(matcher, true);
         else if ((matcher = getCommandMatcher(input, Commands.forgotPassword.regex)) != null)
             registerController.forgotPassword(matcher);
 

@@ -14,9 +14,14 @@ public class User {
     private String answer;
     private int XP;
     private int gold;
-    private int HP;
+    private int HP = 100;
     private int character;
-    ArrayList<Card> battleDeck = new ArrayList<>();
+    private int clanCode;
+
+    public int getClanCode() {
+        return clanCode;
+    }
+
     ArrayList<Card> cards = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
     public User(String userName, String password, String nickname, String email, String question, String answer) {
@@ -26,6 +31,19 @@ public class User {
         this.email = email;
         this.question = question;
         this.answer = answer;
+    }
+
+    public User(String userName, String password, String nickname, String email, int lvl, String question, String answer, int XP, int gold, ArrayList<Card> cards) {
+        this.userName = userName;
+        Password = password;
+        this.nickname = nickname;
+        this.email = email;
+        this.lvl = lvl;
+        this.question = question;
+        this.answer = answer;
+        this.XP = XP;
+        this.gold = gold;
+        this.cards = cards;
     }
 
     public static void addUser(User user){
@@ -164,14 +182,6 @@ public class User {
         this.HP = HP;
     }
 
-    public ArrayList<Card> getBattleDeck() {
-        return battleDeck;
-    }
-
-    public void setBattleDeck(ArrayList<Card> battleDeck) {
-        this.battleDeck = battleDeck;
-    }
-
     public ArrayList<Card> getCards() {
         return cards;
     }
@@ -191,4 +201,19 @@ public class User {
     public static ArrayList<User> getUsers() {
         return users;
     }
+
+    public void upgradeLVL(){
+        if (getXP() > 200){
+            setXP(getXP() - 200);
+            setLvl(getLvl() + 1);
+        }
+    }
+
+    public void updateUserInDB(User user){
+
+    }
+
+    public void getUserHistory(String userName){}
+
+    public void addUserHistory(Game gameResult){}
 }

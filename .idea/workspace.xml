@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +54,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -74,7 +82,8 @@
       <updated>1720103635772</updated>
       <workItem from="1720103636885" duration="7365000" />
       <workItem from="1720123976386" duration="7079000" />
-      <workItem from="1720198807118" duration="18753000" />
+      <workItem from="1720198807118" duration="19344000" />
+      <workItem from="1720245245036" duration="15066000" />
     </task>
     <servers />
   </component>
