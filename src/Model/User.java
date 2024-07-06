@@ -14,16 +14,13 @@ public class User {
     private String answer;
     private int XP;
     private int gold;
-    private int HP = 100;
+    private int HP;
     private int character;
-    private int clanCode;
-
-    public int getClanCode() {
-        return clanCode;
-    }
-
+    private int clanCode=-1;
+    private boolean didClanWar=false;
     ArrayList<Card> cards = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
+
     public User(String userName, String password, String nickname, String email, String question, String answer) {
         this.userName = userName;
         Password = password;
@@ -63,6 +60,39 @@ public class User {
     }
 
     public void heal(){this.HP+=20;}
+
+    public void hurt(int amount){
+        this.HP-=amount;
+    }
+
+    public void die(){
+        this.HP=0;
+    }
+
+    public String win(int amount, int bet){
+        String output = null;
+        this.gold+=50;
+        this.XP+=amount;
+        output=nickname+" is awarded 50 coins and "+amount+" XP :)";
+        if (bet>0) {
+            this.gold+=bet;
+            output="\n"+nickname+" won the bet for "+bet+" coins";
+        }
+
+        return output;
+    }
+
+    public String lose(int amount, int bet){
+        String output = null;
+        this.gold+=5;
+        this.XP+=10;
+        output=nickname+" gets 5 coins and 10 XP because we pity you :(";
+        if (bet>0) {
+            this.gold-=bet;
+            output="\n"+nickname+" lost the bet for "+bet+" coins";
+        }
+        return output;
+    }
 
     public static boolean checkUserName(String userName){return true;}
 
@@ -198,8 +228,20 @@ public class User {
         this.character = type;
     }
 
-    public static ArrayList<User> getUsers() {
-        return users;
+    public int getClanCode() {
+        return clanCode;
+    }
+
+    public void setClanCode(int clanCode) {
+        this.clanCode = clanCode;
+    }
+
+    public boolean isDidClanWar() {
+        return didClanWar;
+    }
+
+    public void setDidClanWar(boolean didClanWar) {
+        this.didClanWar = didClanWar;
     }
 
     public void upgradeLVL(){
@@ -216,4 +258,9 @@ public class User {
     public void getUserHistory(String userName){}
 
     public void addUserHistory(Game gameResult){}
+
+    public static ArrayList<User> getUsers() {
+        return users;
+    }
+
 }

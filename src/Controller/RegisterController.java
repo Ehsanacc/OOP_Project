@@ -14,7 +14,8 @@ import java.util.regex.Pattern;
 
 public class RegisterController {
     public RegisterController(){
-        new DataBaseController().startApp();
+        DataBaseController dataBaseController = new DataBaseController();
+        dataBaseController.startApp();
     }
     Scanner scanner = new Scanner(System.in);
     RegisterMenu registerMenu = new RegisterMenu();

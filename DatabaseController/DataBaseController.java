@@ -16,13 +16,27 @@ public class DataBaseController {
     private static String url;
     public DataBaseController(){
         try {
-            url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
+            url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem 6/OOP/Project/Phase 1/MyPart/Database/db.db";
             connection = DriverManager.getConnection(url);
 
         } catch (SQLException e) {
             System.out.println("Database couldn't connect");
             System.out.println(e.getMessage());
         }
+//        String createTableSQL = "CREATE TABLE IF NOT EXISTS users (" +
+//                "username TEXT PRIMARY KEY," +
+//                "password TEXT NOT NULL," +
+//                "nickname TEXT NOT NULL," +
+//                "email TEXT NOT NULL," +
+//                "question TEXT NOT NULL," +
+//                "answer TEXT NOT NULL" +
+//                ");";
+//        try {
+//            Statement statement = connection.createStatement();
+//            statement.execute(createTableSQL);
+//        } catch (SQLException e){
+//            System.out.println(e.getMessage());
+//        }
     }
 
 
@@ -185,7 +199,7 @@ public class DataBaseController {
 
     public void startApp(){
         ArrayList<User> allUsers = new ArrayList<>();
-//        System.out.println(connection.toString());
+
         try {
             String query = "SELECT * FROM main.users ";
             Statement statement = connection.createStatement();

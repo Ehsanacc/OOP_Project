@@ -35,6 +35,12 @@ public class RegisterMenu extends Menu{
         String input;
         while (true){
             System.out.println("Welcome to Register Menu. Please chose one of the options below");
+            System.out.println("""
+                    \t1- user create -u <username> -p <password> <passwordConfirmation> –email <email> -n <nickname>
+                    \t2- user create -u <username> -p random –email <email> -n <nickname>
+                    \t3- user login -u <username> -p <password>
+                    \t4- Forgot my password -u <username>
+                    """);
             input = scanner.nextLine();
             boolean exit = checkCommandAndExit(input);
             if (exit)

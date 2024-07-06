@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Card {
-
     private String name;
     private int point;
     private int damage;
@@ -18,8 +17,21 @@ public class Card {
     private boolean upgraded;
     private int upgradeCost;
 
-    public Card(String name) {
+    public Card(String name){
+        this.name=name;
+    }
+
+    public Card(String name, int point, int damage, int duration, boolean special, int type, int level, int requiredLevel, boolean upgraded, int upgradeCost) {
         this.name = name;
+        this.point = point;
+        this.damage = damage;
+        this.duration = duration;
+        this.special = special;
+        this.type = type;
+        this.level = level;
+        this.requiredLevel = requiredLevel;
+        this.upgraded = upgraded;
+        this.upgradeCost = upgradeCost;
     }
 
     public void buff(){
