@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DatabaseController/DataBaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/History.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/SpecialCards.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/View/ClanMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enum/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Clan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Clan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/HistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/HistoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Ehsan/studies/uni/sem 6/OOP/HW/HW4/Upload",
+    "last_opened_file_path": "D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -100,7 +84,9 @@
       <workItem from="1720103636885" duration="7365000" />
       <workItem from="1720123976386" duration="7079000" />
       <workItem from="1720198807118" duration="19344000" />
-      <workItem from="1720245245036" duration="20629000" />
+      <workItem from="1720245245036" duration="20641000" />
+      <workItem from="1720270033789" duration="12000" />
+      <workItem from="1720270166738" duration="306000" />
     </task>
     <servers />
   </component>

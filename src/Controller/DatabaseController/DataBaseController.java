@@ -13,10 +13,10 @@ import java.util.Set;
 
 public class DataBaseController {
     private static Connection connection;
-    private static String url;
+
     public DataBaseController(){
         try {
-            url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
+            String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
             connection = DriverManager.getConnection(url);
 
         } catch (SQLException e) {
