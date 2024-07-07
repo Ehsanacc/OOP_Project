@@ -9,8 +9,18 @@ import java.util.regex.Matcher;
 public class GameMenu extends Menu{
     Matcher matcher;
     AI opp;
+    public boolean isAi() {
+        return ai;
+    }
+
+    public void setAi(boolean ai) {
+        this.ai = ai;
+    }
+
     boolean ai=false, aiTurn;
     GameController gameController=new GameController();
+    AI oppF=new AI(gameController);
+
     @Override
     public void run() {
         String input;
@@ -48,13 +58,18 @@ public class GameMenu extends Menu{
         else if ((matcher = getCommandMatcher(input, Commands.selectMode.regex)) != null){
             if (matcher.group("number").equals("1")){
                 ai=true;
-                opp=new AI(gameController);
+                opp=oppF;
                 User.setOpponent(opp);
                 aiTurn=(gameController.getPlayer().equals(User.getOpponent()));
             }
             if (matcher.group("number").equals("3")){
                 ClanMenu clanMenu=new ClanMenu();
                 clanMenu.run();
+            }
+            if (matcher.group("number").equals("2")){
+                ai=false;
+                opp= (AI) User.getOpponent();
+
             }
             System.out.println(gameController.selectModes(matcher));
         }

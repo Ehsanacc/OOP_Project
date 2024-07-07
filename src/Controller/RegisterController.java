@@ -2,6 +2,7 @@ package Controller;
 
 import Controller.DatabaseController.DataBaseController;
 import Model.User;
+import View.AdminMenu;
 import View.Captchscii;
 import View.GameMenu;
 import View.RegisterMenu;
@@ -251,6 +252,27 @@ public class RegisterController {
                 new GameMenu().run();
 
             User.setOpponent(user);
+        }
+    }
+    public void logInAdmin(Matcher matcher, boolean callingFromRegister){
+        User prevUser=User.getLoggedInUser();
+        if (callingFromRegister) {
+            if (User.getLoggedInUser() != null){
+                System.out.println("Admin is now logging in instead of user.");
+            }
+            String password = matcher.group("pass");
+            User user = null;
+
+            user = findUser("Admin", password);
+            // TODO: implement the ban system when the user makes a mistake in logging in
+            if (user == null) {
+                System.out.println("Admin login unsuccessfully");
+                user=prevUser;
+                registerMenu.run();
+            }
+            User.setLoggedInUser(user);
+            System.out.println(User.getLoggedInUser().getUserName());
+            new AdminMenu().run();
         }
     }
     public User findUser(String username, String password){

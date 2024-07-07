@@ -22,7 +22,7 @@ public class ProfileMenu extends Menu{
             profileController.changeUserName(matcher);
         else if ((matcher = getCommandMatcher(input, Commands.changeNickname.regex)) != null)
             profileController.changeNickName(matcher);
-        else if ((matcher = getCommandMatcher(input, Commands.changePassword.regex)) != null)
+        else if ((matcher = getCommandMatcher(input.trim(), Commands.changePassword.regex)) != null)
             profileController.changePassWord(matcher);
         else if ((matcher = getCommandMatcher(input, Commands.changeEmail.regex)) != null)
             profileController.changeEmail(matcher);

@@ -1,0 +1,16 @@
+-Register Menu
+
+user create -u Ehsan -p Merrikhi_21 -r Merrikhi_21 -e a@b.com -n nick
+question pick -q 1 -a Hasan -c Hasan
+user create -u sara -p Shakeri_80 -r Shakeri_80 -e w@s.com -n shokr
+question pick -q 2 -a red -c red
+user create -u helia -p Esfahani_80 -r Esfahani_80 -e m@t.com -n khab
+question pick -q 3 -a nmd -c nmd
+
+user login -u Ehsan -p Merrikhi_21
+
+
+ban user in login section
+profile debug
+
+

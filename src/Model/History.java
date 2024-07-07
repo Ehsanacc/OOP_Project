@@ -1,14 +1,14 @@
 package Model;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.sql.Date;
 
 public class History {
     private String opponentName;
-    private Date date;
     private boolean won;
     private int opponentLevel;
     private int prize;
+    private Date date;
 
     public History(String opponentName, Date date, boolean won, int opponentLevel, int prize) {
         this.opponentName = opponentName;
@@ -21,31 +21,6 @@ public class History {
     public String getOpponentName() {
         return opponentName;
     }
-
-    public void setOpponentName(String opponentName) {
-        this.opponentName = opponentName;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setWon(boolean won) {
-        this.won = won;
-    }
-
-    public void setOpponentLevel(int opponentLevel) {
-        this.opponentLevel = opponentLevel;
-    }
-
-    public void setPrize(int prize) {
-        this.prize = prize;
-    }
-
     public boolean isWon() {
         return won;
     }
@@ -54,5 +29,8 @@ public class History {
     }
     public int getPrize() {
         return prize;
+    }
+    public Date getDate() {
+        return date;
     }
 }

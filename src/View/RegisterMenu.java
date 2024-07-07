@@ -26,6 +26,8 @@ public class RegisterMenu extends Menu{
             registerController.logIn(matcher, true);
         else if ((matcher = getCommandMatcher(input, Commands.forgotPassword.regex)) != null)
             registerController.forgotPassword(matcher);
+        else if ((matcher = getCommandMatcher(input, Commands.adminLog.regex)) != null)
+            registerController.logInAdmin(matcher,true);
 
         return false;
     }

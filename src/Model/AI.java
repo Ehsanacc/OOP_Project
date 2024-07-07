@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.GameController;
+import View.GameMenu;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -24,6 +25,23 @@ public class AI extends User{
     public void play (){
         if (defeats==total){
 //            bossFightSet();
+        }
+    }
+    public void countWins(String res){
+        String[] input= res.split("\s*");
+        String nickname=User.getLoggedInUser().getNickname();
+        switch (input[0]){
+            case "AI":
+                System.out.println("You lost and have to start again. =D");
+                new GameMenu().run();
+                break;
+            default:
+                System.out.println("Starting next round");
+                defeats++;
+                GameMenu gameMenu=new GameMenu();
+                gameMenu.setAi(true);
+                gameMenu.run();
+                break;
         }
     }
 

@@ -11,17 +11,24 @@ public class Card {
     private int damage;
     private int duration;
     private boolean special;
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+    private boolean isAdmin=false;
     private int type;
-    private int level;
     private int requiredLevel;
     private boolean upgraded;
     private int upgradeCost;
+    private int price;
 
     public Card(String name){
         this.name=name;
     }
 
-    public Card(String name, int point, int damage, int duration, boolean special, int type, int requiredLevel, boolean upgraded, int upgradeCost) {
+    public Card(String name, int point, int damage, int duration, boolean special, int type, int requiredLevel, boolean upgraded, int upgradeCost, int price) {
         this.name = name;
         this.point = point;
         this.damage = damage;
@@ -31,9 +38,21 @@ public class Card {
         this.requiredLevel = requiredLevel;
         this.upgraded = upgraded;
         this.upgradeCost = upgradeCost;
+        this.price=price;
     }
 
-
+    public Card(String name, int point, int damage, int duration, boolean special, boolean isAdmin, int type, int requiredLevel, boolean upgraded, int upgradeCost) {
+        this.name = name;
+        this.point = point;
+        this.damage = damage;
+        this.duration = duration;
+        this.special = special;
+        this.isAdmin = isAdmin;
+        this.type = type;
+        this.requiredLevel = requiredLevel;
+        this.upgraded = upgraded;
+        this.upgradeCost = upgradeCost;
+    }
 
     public void buff(){
         this.damage+=this.duration*2;
@@ -129,14 +148,6 @@ public class Card {
         this.type = type;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public int getRequiredLevel() {
         return requiredLevel;
     }
@@ -161,7 +172,10 @@ public class Card {
         this.upgradeCost = upgradeCost;
     }
 
-    public void upgradeCard(Card card){}
+    public void upgradeCard(Card card){
+        this.damage+=4*this.duration;
+        this.point+=20;
+    }
 
     public static void addCard(Card card){}
 
@@ -173,5 +187,13 @@ public class Card {
     public void changeCard(HashMap<Integer, String> news){}
 
     private boolean checkCard(HashMap<Integer, String> news){return true;}
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
 

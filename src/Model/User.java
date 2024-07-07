@@ -67,6 +67,8 @@ public class User {
 
     public void heal(){this.HP+=20;}
 
+    public void buy(int amount){ this.gold-=amount;}
+
     public void hurt(int amount){
         this.HP-=amount;
     }

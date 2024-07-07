@@ -52,7 +52,6 @@ public class ProfileController {
     public void changeNickName(Matcher matcher){
         String nickname = matcher.group("nickname");
         DataBaseController dataBaseController = new DataBaseController();
-        ArrayList<String> allNicknames = dataBaseController.getAllUserNicknames();
 
         if (nickname.isEmpty()){
             System.out.println("nickname field cannot be empty");
@@ -82,6 +81,7 @@ public class ProfileController {
 
         System.out.println("please fill the captcha");
         System.out.println(captcha);
+        System.out.println(trueAns);
         String ans = scanner.nextLine();
 
 
@@ -104,7 +104,7 @@ public class ProfileController {
     private boolean weakPassword(String password){
         if (password.length() < 8)
             return true;
-        else return !validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$");
+        else return validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).+$");
     }
 
     public void changeEmail(Matcher matcher){
@@ -114,7 +114,7 @@ public class ProfileController {
             profileMenu.run();
         }
         DataBaseController dataBaseController = new DataBaseController();
-        dataBaseController.updateUserEmail(User.getLoggedInUser().getEmail(), newEmail);
+        dataBaseController.updateUserEmail(User.getLoggedInUser().getUserName(), newEmail);
     }
 
     private boolean invalidEmail(String email){
