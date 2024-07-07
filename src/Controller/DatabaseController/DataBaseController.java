@@ -15,17 +15,39 @@ import java.util.Set;
 public class DataBaseController {
     private static Connection connection;
 
-    public DataBaseController(){
+    public DataBaseController() {
         try {
+            // Initialize the connection
             String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
             connection = DriverManager.getConnection(url);
             connection.setAutoCommit(false);  // Use transactions manually
 
+            // Create the users table
+            String query = "CREATE TABLE IF NOT EXISTS users (" +
+                    "username TEXT PRIMARY KEY, " +
+                    "password TEXT NOT NULL, " +
+                    "nickname TEXT NOT NULL, " +
+                    "email TEXT NOT NULL, " +
+                    "question TEXT NOT NULL, " +
+                    "answer TEXT NOT NULL, " +
+                    "lvl INT NOT NULL, " +
+                    "xp INT NOT NULL, " +
+                    "gold INT NOT NULL, " +
+                    "clan_code INT NOT NULL);";
+
+            try (Statement statement = connection.createStatement()) {
+                statement.execute(query);
+                connection.commit();  // Commit the transaction
+            } catch (SQLException exception) {
+                System.out.println("Exception in creating users table\n" + exception.getMessage());
+                connection.rollback();  // Rollback the transaction if there's an error
+            }
         } catch (SQLException e) {
             System.out.println("Database couldn't connect");
             System.out.println(e.getMessage());
         }
     }
+
 
 
     public synchronized void addUser(User user) {
@@ -88,7 +110,7 @@ public class DataBaseController {
 //        }
 //    }
     private void createHistory(String username) {
-        String query = "CREATE TABLE IF NOT EXISTS " + username + " (dat DATE NOT NULL, opponentName TEXT NOT NULL, won BIT NOT NULL, opponentLvl INT NOT NULL, prize INT NOT NULL)";
+        String query = "CREATE TABLE IF NOT EXISTS " + username.concat("History") + " (dat DATE NOT NULL, opponentName TEXT NOT NULL, won BIT NOT NULL, opponentLvl INT NOT NULL, prize INT NOT NULL)";
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(query);
@@ -476,7 +498,7 @@ public class DataBaseController {
 
     public void getUserHistory(String userName){
         try {
-            String query = "select * from "+userName+";";
+            String query = "select * from "+userName.concat("History")+";";
             Statement statement = connection.createStatement();
             statement.execute(query);
             ResultSet rs = statement.getResultSet();
