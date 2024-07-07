@@ -19,6 +19,7 @@ public class DataBaseController {
         try {
             String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
             connection = DriverManager.getConnection(url);
+            connection.setAutoCommit(false);  // Use transactions manually
 
         } catch (SQLException e) {
             System.out.println("Database couldn't connect");
@@ -27,31 +28,78 @@ public class DataBaseController {
     }
 
 
-    public void addUser(User user){
-        try {
-            String query = "INSERT INTO users (username, password, nickname, email, question, answer, lvl, xp, gold, clan_code) VALUES ('"
-                    + user.getUserName() + "' , '" + user.getPassword() + "' , '" + user.getNickname() + "' , '"
-                    + user.getEmail() + "' , '" + user.getQuestion() + "' , '"
-                    + user.getAnswer() + "' , "+user.getLvl()+" , "+user.getXP()+" , "+user.getGold()+" , "+user.getClanCode()+");";
-            Statement st = connection.createStatement();
-            st.executeUpdate(query);
-        } catch (Exception e) {
-            System.out.println("Either user was already added \tor \t"+e.getMessage());
+    public synchronized void addUser(User user) {
+        String query = "INSERT INTO users (username, password, nickname, email, question, answer, lvl, xp, gold, clan_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, user.getUserName());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setString(3, user.getNickname());
+            pstmt.setString(4, user.getEmail());
+            pstmt.setString(5, user.getQuestion());
+            pstmt.setString(6, user.getAnswer());
+            pstmt.setInt(7, user.getLvl());
+            pstmt.setInt(8, user.getXP());
+            pstmt.setInt(9, user.getGold());
+            pstmt.setInt(10, user.getClanCode());
+            pstmt.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            System.out.println("Either user was already added or " + e.getMessage());
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
-        if (!user.isGotGiftPack())
+
+        if (!user.isGotGiftPack()) {
+            System.out.println("Entered this section");
             GiftPack(user);
+        }
         System.out.println("And here");
         createHistory(user.getUserName());
     }
+//    public synchronized void addUser(User user){
+//        try {
+//            String query = "INSERT INTO users (username, password, nickname, email, question, answer, lvl, xp, gold, clan_code) VALUES ('"
+//                    + user.getUserName() + "' , '" + user.getPassword() + "' , '" + user.getNickname() + "' , '"
+//                    + user.getEmail() + "' , '" + user.getQuestion() + "' , '"
+//                    + user.getAnswer() + "' , "+user.getLvl()+" , "+user.getXP()+" , "+user.getGold()+" , "+user.getClanCode()+");";
+//            Statement st = connection.createStatement();
+//            st.executeUpdate(query);
+//        } catch (Exception e) {
+//            System.out.println("Either user was already added \tor \t"+e.getMessage());
+//        }
+//        if (!user.isGotGiftPack())
+//            GiftPack(user);
+//        System.out.println("And here");
+//        createHistory(user.getUserName());
+//    }
 
-    private void createHistory(String username){
-        try {
-            String query = "create table if not exists "+username+" (dat date not null , opponentName text not null , won bit not null" +
-                    " , opponentLvl int not null, prize int not null)";
-            Statement statement = connection.createStatement();
+//    private void createHistory(String username){
+//        try {
+//            String query = "create table if not exists "+username+" (dat date not null , opponentName text not null , won bit not null" +
+//                    " , opponentLvl int not null, prize int not null)";
+//            Statement statement = connection.createStatement();
+//            statement.execute(query);
+//        } catch (SQLException exception){
+//            System.out.println(exception.getMessage());
+//        }
+//    }
+    private void createHistory(String username) {
+        String query = "CREATE TABLE IF NOT EXISTS " + username + " (dat DATE NOT NULL, opponentName TEXT NOT NULL, won BIT NOT NULL, opponentLvl INT NOT NULL, prize INT NOT NULL)";
+
+        try (Statement statement = connection.createStatement()) {
             statement.execute(query);
-        } catch (SQLException exception){
+            connection.commit();
+        } catch (SQLException exception) {
             System.out.println(exception.getMessage());
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -66,73 +114,211 @@ public class DataBaseController {
         }
     }
 
-    private void GiftPack(User user){
-        try {
-            String query = "create table if not exists "+user.getUserName()+" " +
-                    "(name text primary key , point int, duration int, " +
-                    "dmg int, char int, spell bit, required_lvl int, upgrade_cost int, upgraded bit)";
-            Statement statement = connection.createStatement();
+    private void GiftPack(User user) {
+        String query = "CREATE TABLE IF NOT EXISTS " + user.getUserName() + " (name TEXT PRIMARY KEY, point INT, duration INT, dmg INT, char INT, spell BIT, required_lvl INT, upgrade_cost INT, upgraded BIT)";
+
+        try (Statement statement = connection.createStatement()) {
             statement.execute(query);
-        } catch (SQLException e){
+            connection.commit();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
+        Set<Integer> uniqueNumbers = new HashSet<>();
 
-        Set<Integer> uniqueNumbers = getRandomNumbers(15, 1, 20);
-        for (Integer i : uniqueNumbers)
-            addCardToUser(user, i);
+        uniqueNumbers = getRandomNumbers(uniqueNumbers,15, 1, 20);
+        uniqueNumbers = getRandomNumbers(uniqueNumbers,20, 21, 30);
 
-        uniqueNumbers = getRandomNumbers(5, 21, 30);
-        for (Integer i : uniqueNumbers)
-            addCardToUser(user, i);
+        addCardToUser(user, uniqueNumbers);
+//        for (Integer i : uniqueNumbers) {
+//            addCardToUser(user, i);
+//        }
+
+//        for (Integer i : uniqueNumbers) {
+//            addCardToUser(user, i);
+//        }
 
         user.setGotGiftPack(true);
     }
 
-    private void addCardToUser(User user, int i){
-        String name = "";
-        int point=0, duration=0, dmg=0, ch=0, reqLVL=0, upgrade_cost=0;
-        boolean isSpell = false;
-        try {
-            String query = "SELECT * FROM cards LIMIT 1 OFFSET "+(i-1)+";";
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-            ResultSet rs = statement.getResultSet();
+//    private void GiftPack(User user){
+//        try {
+//            String query = "create table if not exists "+user.getUserName()+" " +
+//                    "(name text primary key , point int, duration int, " +
+//                    "dmg int, char int, spell bit, required_lvl int, upgrade_cost int, upgraded bit)";
+//            Statement statement = connection.createStatement();
+//            statement.execute(query);
+//        } catch (SQLException e){
+//            System.out.println(e.getMessage());
+//        }
+//
+//        Set<Integer> uniqueNumbers = getRandomNumbers(15, 1, 20);
+//        for (Integer i : uniqueNumbers)
+//            addCardToUser(user, i);
+//
+//        uniqueNumbers = getRandomNumbers(5, 21, 30);
+//        for (Integer i : uniqueNumbers)
+//            addCardToUser(user, i);
+//
+//        user.setGotGiftPack(true);
+//    }
 
-            name = rs.getString("name");
-            point = rs.getInt("att_def_point");
-            duration = rs.getInt("duration");
-            dmg = rs.getInt("player_dmg");
-            ch = rs.getInt("char");
-            isSpell = rs.getBoolean("spell");
-            reqLVL = rs.getInt("required_lvl");
-            upgrade_cost = rs.getInt("upgrade_cost");
-        } catch (SQLException exception){
-            System.out.println(exception.getMessage());
-        }
-        try {
-            String query = "INSERT INTO "+user.getUserName()+" (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded)" +
-                    " values ('"+name+"' , "+point+" , "+duration+" , "+dmg+" , "+ch+" , "+isSpell+" , "+reqLVL+
-                    " , "+upgrade_cost+" , "+0+");";
-            Statement statement = connection.createStatement();
-            statement.execute(query);
-        } catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
+    private void addCardToUser(User user, Set<Integer> indices) {
+        String query = "SELECT * FROM cards WHERE rowid = ?";
+        String insertQuery = "INSERT INTO " + user.getUserName() + " (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         ArrayList<Card> cards = user.getCards();
-        cards.add(new Card(name, point, dmg, duration, isSpell, ch, reqLVL, false, upgrade_cost));
+
+        try (PreparedStatement selectPstmt = connection.prepareStatement(query);
+             PreparedStatement insertPstmt = connection.prepareStatement(insertQuery)) {
+
+            // Loop over all indices to fetch and insert card details
+            for (Integer i : indices) {
+                selectPstmt.setInt(1, i);
+                try (ResultSet rs = selectPstmt.executeQuery()) {
+                    if (rs.next()) {
+                        String name = rs.getString("name");
+                        int point = rs.getInt("att_def_point");
+                        int duration = rs.getInt("duration");
+                        int dmg = rs.getInt("player_dmg");
+                        int ch = rs.getInt("char");
+                        boolean isSpell = rs.getBoolean("spell");
+                        int reqLVL = rs.getInt("required_lvl");
+                        int upgrade_cost = rs.getInt("upgrade_cost");
+
+                        // Add to user's card collection
+                        cards.add(new Card(name, point, dmg, duration, isSpell, ch, reqLVL, false, upgrade_cost));
+
+                        // Insert into user's table
+                        insertPstmt.setString(1, name);
+                        insertPstmt.setInt(2, point);
+                        insertPstmt.setInt(3, duration);
+                        insertPstmt.setInt(4, dmg);
+                        insertPstmt.setInt(5, ch);
+                        insertPstmt.setBoolean(6, isSpell);
+                        insertPstmt.setInt(7, reqLVL);
+                        insertPstmt.setInt(8, upgrade_cost);
+                        insertPstmt.setBoolean(9, false);
+                        insertPstmt.addBatch();
+                    }
+                }
+            }
+
+            // Execute batch insert
+            insertPstmt.executeBatch();
+            connection.commit();
+
+        } catch (SQLException exception) {
+            System.out.println(exception.getMessage());
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         user.setCards(cards);
     }
 
-    private Set<Integer> getRandomNumbers(int n, int min, int max){
-        Set<Integer> ret = new HashSet<>();
 
-        while (ret.size() < n) {
+//    private void addCardToUser(User user, int i) {
+//        String query = "SELECT * FROM cards LIMIT 1 OFFSET ?;";
+//        String insertQuery = "INSERT INTO " + user.getUserName() + " (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+//
+//        String name = "";
+//        int point=0, duration=0, dmg=0, ch=0, reqLVL=0, upgrade_cost=0;
+//        boolean isSpell = false;
+//
+//        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+//            pstmt.setInt(1, i - 1);
+//            ResultSet rs = pstmt.executeQuery();
+//
+//            if (rs.next()) {
+//                name = rs.getString("name");
+//                point = rs.getInt("att_def_point");
+//                duration = rs.getInt("duration");
+//                dmg = rs.getInt("player_dmg");
+//                ch = rs.getInt("char");
+//                isSpell = rs.getBoolean("spell");
+//                reqLVL = rs.getInt("required_lvl");
+//                upgrade_cost = rs.getInt("upgrade_cost");
+//
+//                try (PreparedStatement insertPstmt = connection.prepareStatement(insertQuery)) {
+//                    insertPstmt.setString(1, name);
+//                    insertPstmt.setInt(2, point);
+//                    insertPstmt.setInt(3, duration);
+//                    insertPstmt.setInt(4, dmg);
+//                    insertPstmt.setInt(5, ch);
+//                    insertPstmt.setBoolean(6, isSpell);
+//                    insertPstmt.setInt(7, reqLVL);
+//                    insertPstmt.setInt(8, upgrade_cost);
+//                    insertPstmt.setBoolean(9, false);
+//                    insertPstmt.executeUpdate();
+//                    connection.commit();
+//                }
+//            }
+//        } catch (SQLException exception) {
+//            System.out.println(exception.getMessage());
+//            try {
+//                connection.rollback();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        ArrayList<Card> cards = user.getCards();
+//        cards.add(new Card(name, point, dmg, duration, isSpell, ch, reqLVL, false, upgrade_cost));
+//        user.setCards(cards);
+//    }
+
+//    private void addCardToUser(User user, int i){
+//        String name = "";
+//        int point=0, duration=0, dmg=0, ch=0, reqLVL=0, upgrade_cost=0;
+//        boolean isSpell = false;
+//        try {
+//            String query = "SELECT * FROM cards LIMIT 1 OFFSET "+(i-1)+";";
+//            Statement statement = connection.createStatement();
+//            statement.execute(query);
+//            ResultSet rs = statement.getResultSet();
+//
+//            name = rs.getString("name");
+//            point = rs.getInt("att_def_point");
+//            duration = rs.getInt("duration");
+//            dmg = rs.getInt("player_dmg");
+//            ch = rs.getInt("char");
+//            isSpell = rs.getBoolean("spell");
+//            reqLVL = rs.getInt("required_lvl");
+//            upgrade_cost = rs.getInt("upgrade_cost");
+//        } catch (SQLException exception){
+//            System.out.println(exception.getMessage());
+//        }
+//        try {
+//            String query = "INSERT INTO "+user.getUserName()+" (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded)" +
+//                    " values ('"+name+"' , "+point+" , "+duration+" , "+dmg+" , "+ch+" , "+isSpell+" , "+reqLVL+
+//                    " , "+upgrade_cost+" , "+0+");";
+//            Statement statement = connection.createStatement();
+//            statement.execute(query);
+//        } catch (SQLException e){
+//            System.out.println(e.getMessage());
+//        }
+//        ArrayList<Card> cards = user.getCards();
+//        cards.add(new Card(name, point, dmg, duration, isSpell, ch, reqLVL, false, upgrade_cost));
+//        user.setCards(cards);
+//    }
+
+    private Set<Integer> getRandomNumbers(Set<Integer> set, int n, int min, int max){
+
+        while (set.size() < n) {
             Random random = new Random();
             int randomNumber = random.nextInt(max - min + 1) + min;
-            ret.add(randomNumber);
+            set.add(randomNumber);
         }
-        return ret;
+        return set;
     }
+
 
     public void updateUserPassword(String username, String password){
         try {
@@ -245,8 +431,14 @@ public class DataBaseController {
                 allUsers.add(new User(username,password,nickname,email,lvl,question,answer,xp,gold,clanCode,cards));
 
             }
-        } catch (SQLException exception){
+            connection.commit();
+        } catch (SQLException exception) {
             System.out.println(exception.getMessage());
+            try {
+                connection.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         User.setUsers(allUsers);
 //        System.out.println("here is the error");
