@@ -11,12 +11,15 @@ public class Card {
     private int damage;
     private int duration;
     private boolean special;
+
     public boolean isAdmin() {
         return isAdmin;
     }
+
     public void setAdmin(boolean admin) {
         isAdmin = admin;
     }
+
     private boolean isAdmin=false;
     private int type;
     private int requiredLevel;
@@ -47,11 +50,11 @@ public class Card {
         this.damage = damage;
         this.duration = duration;
         this.special = special;
-        this.isAdmin = isAdmin;
         this.type = type;
         this.requiredLevel = requiredLevel;
         this.upgraded = upgraded;
         this.upgradeCost = upgradeCost;
+        this.isAdmin=isAdmin;
     }
 
     public void buff(){
@@ -172,7 +175,7 @@ public class Card {
         this.upgradeCost = upgradeCost;
     }
 
-    public void upgradeCard(Card card){
+    public void upgradeCard(){
         this.damage+=4*this.duration;
         this.point+=20;
     }
@@ -181,9 +184,14 @@ public class Card {
 
     @Override
     public String toString() {
-        return super.toString();
-    }
+        String output="";
+        output="Card name:"+this.name+
+                "\nattack/defense point:"+this.point+
+                "\ndamage:"+this.damage+
+                "\nduration"+this.duration;
+        return output;
 
+    }
     public void changeCard(HashMap<Integer, String> news){}
 
     private boolean checkCard(HashMap<Integer, String> news){return true;}

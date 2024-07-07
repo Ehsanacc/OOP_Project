@@ -24,8 +24,8 @@ public class ShopMenu extends Menu{
         while (true){
             System.out.println("Welcome to the Shop. You can buy or upgrade a card with the instructions below:");
             System.out.println("""
-                    \t1- buy card -name <name>
-                    \t2- upgrade card -name <name>
+                    \t1- buy card -n <name>
+                    \t2- upgrade card -n <name>
                     """);
             input = scanner.nextLine();
             boolean exit = checkCommandAndExit(input);
@@ -44,6 +44,8 @@ public class ShopMenu extends Menu{
         }
         else if ((matcher = getCommandMatcher(input, Commands.upgradeCard.regex)) != null){
             System.out.println(shopController.upgradeCards(matcher));
+        } else if ((matcher=getCommandMatcher(input,Commands.back.regex))!=null){
+            new MainMenu().run();
         }
         else
             System.out.println("invalid command");

@@ -36,66 +36,80 @@ public class AdminController {
     }
     public String showCard(Matcher matcher){
         n= Integer.parseInt(matcher.group("n"));
-        return "| Name: "+userShows.get(n).getUsername()+ " | Level: "+
-                userShows.get(n).getLevel()+" | Gold: "+ userShows.get(n).getGold()+" |";
+        return "| Name: "+adminCards.get(n).getName()+ " | Points: "+
+                adminCards.get(n).getPoint()+" | Duration: "+ adminCards.get(n).getDuration()+" | "+
+                "Damage: "+adminCards.get(n).getDamage()+" | Upgrade Level: "+adminCards.get(n).getRequiredLevel()+
+                " | Upgrade Cost: "+adminCards.get(n).getUpgradeCost()+" |";
     }
-    public String showCards(){
-        StringBuilder output= new StringBuilder();
-        output.append("Cards:\n");
-        int index, rows=adminCards.size()/5, col=5;
-        int n=17;
-        String div = String.valueOf(repeat('*', 17*5));
-        output.append(div).append("\n").append('|');
-        for (int i = 0; i < rows; i++) {
-            output.append(i+"\n");
-            for (int j = 0; j < col; j++) {
-                index=5*i+j;
-                output.append(adminCards.get(index).getName()).append(repeat(' ', n-adminCards.get(index).getName().length())).append('|');
-            }
-            output.append("\n").append('|');
-            for (int j = 0; j < adminCards.size()/rows; j++) {
-                index=5*i+j;
-                if (adminCards.get(index).isSpecial()){
-                    output.append("spell").append(repeat(' ', n - 5)).append('|');
-                }
-                else {
-                    output.append("DMG\\HL").append(repeat(' ', n - 6)).append('|');
-                }
-            }
-            output.append("\n").append('|');
-            for (int j = 0; j <col; j++) {
-                index=5*i+j;
-                if (!adminCards.get(index).isSpecial()){
-                    output.append("ATT/DEF PNT= ").append(adminCards.get(index).getPoint()).append(repeat(' ', n - 13)).append('|');
-                }
-                else {
-                    output.append(repeat(' ', n )).append('|');
-                }
-            }
-            output.append("\n").append('|');
-            for (int j = 0; j < col; j++) {
-                index=5*i+j;
-                output.append("DUR= ").append(adminCards.get(index).getDuration()).append(repeat(' ', n - 7)).append('|');
-            }
-            output.append("\n").append('|');
-            for (int j = 0; j < col; j++) {
-                index=5*i+j;
-                if (!adminCards.get(index).isSpecial())
-                    output.append("DMG= ").append(adminCards.get(index).getDamage()).append(repeat(' ', n - 7)).append('|');
-                else {
-                    output.append(repeat(' ', n )).append('|');
-                }
-            }
-            output.append("\n").append('|');
-            for (int j = 0; j < col; j++) {
-                index=5*i+j;
-                output.append("PRICE= ").append(adminCards.get(index).getDuration()).append(repeat(' ', n - 9)).append('|');
-            }
-            output.append("\n");
+    public String showCardInt(int m){
+        return "| Name: "+adminCards.get(m).getName()+ " | Points: "+
+                adminCards.get(m).getPoint()+" | Duration: "+ adminCards.get(m).getDuration()+" | "+
+                "Damage: "+adminCards.get(m).getDamage()+" | Upgrade Level: "+adminCards.get(m).getRequiredLevel()+
+                " | Upgrade Cost: "+adminCards.get(m).getUpgradeCost()+" |";
+    }
+    public void showCards(){
+        System.out.println("List of admin cards:");
+        for (int i = 0; i < adminCards.size(); i++) {
+            System.out.println("\t"+i+" "+showCardInt(i));
         }
-        output.append(div).append("\n").append('|');
-        return output.toString();
     }
+//    public void showCards(){
+//        StringBuilder output= new StringBuilder();
+//        output.append("Cards:\n");
+//        int index, rows=adminCards.size()/5, col=5;
+//        int n=17;
+//        String div = String.valueOf(repeat('*', 17*5));
+//        output.append(div).append("\n").append('|');
+//        for (int i = 0; i < rows; i++) {
+//            output.append(i+"\n");
+//            for (int j = 0; j < col; j++) {
+//                index=5*i+j;
+//                output.append(adminCards.get(index).getName()).append(repeat(' ', n-adminCards.get(index).getName().length())).append('|');
+//            }
+//            output.append("\n").append('|');
+//            for (int j = 0; j < adminCards.size()/rows; j++) {
+//                index=5*i+j;
+//                if (adminCards.get(index).isSpecial()){
+//                    output.append("spell").append(repeat(' ', n - 5)).append('|');
+//                }
+//                else {
+//                    output.append("DMG\\HL").append(repeat(' ', n - 6)).append('|');
+//                }
+//            }
+//            output.append("\n").append('|');
+//            for (int j = 0; j <col; j++) {
+//                index=5*i+j;
+//                if (!adminCards.get(index).isSpecial()){
+//                    output.append("ATT/DEF PNT= ").append(adminCards.get(index).getPoint()).append(repeat(' ', n - 13)).append('|');
+//                }
+//                else {
+//                    output.append(repeat(' ', n )).append('|');
+//                }
+//            }
+//            output.append("\n").append('|');
+//            for (int j = 0; j < col; j++) {
+//                index=5*i+j;
+//                output.append("DUR= ").append(adminCards.get(index).getDuration()).append(repeat(' ', n - 7)).append('|');
+//            }
+//            output.append("\n").append('|');
+//            for (int j = 0; j < col; j++) {
+//                index=5*i+j;
+//                if (!adminCards.get(index).isSpecial())
+//                    output.append("DMG= ").append(adminCards.get(index).getDamage()).append(repeat(' ', n - 7)).append('|');
+//                else {
+//                    output.append(repeat(' ', n )).append('|');
+//                }
+//            }
+//            output.append("\n").append('|');
+//            for (int j = 0; j < col; j++) {
+//                index=5*i+j;
+//                output.append("PRICE= ").append(adminCards.get(index).getDuration()).append(repeat(' ', n - 9)).append('|');
+//            }
+//            output.append("\n");
+//        }
+//        output.append(div).append("\n").append('|');
+//        return output.toString();
+//    }
 
 
     public static StringBuilder repeat(char c, int n){
@@ -124,9 +138,8 @@ public class AdminController {
         if (in.equals("back")){
             System.out.println("exiting editing menu");
             return;
-        }else{
-            type=Integer.parseInt(in);
         }
+        type=Integer.parseInt(in);
         switch (type){
             case 0:
                 name=scanner.nextLine();
@@ -154,11 +167,15 @@ public class AdminController {
                 break;
         }
         System.out.println("Are you sure you want to edit this card? (y/n)");
+        scanner.nextLine();
         String comm=scanner.nextLine();
         if (comm.equals("y")){
+            System.out.println("Card changed");
             adminCards.remove(n);
             adminCards.add(n,cardCopy);
+//            dataBaseController.changeCard(cardCopy.getName());
         } else {
+            System.out.println("No changes were applied");
             adminCards.get(n).setPrice(cost1);
             adminCards.get(n).setDamage(plDamage1);
             adminCards.get(n).setName(name1);
@@ -184,11 +201,12 @@ public class AdminController {
             int attack = Integer.parseInt(matcher.group("attack"));
             int duration = Integer.parseInt(matcher.group("duration"));
             int plDamage = Integer.parseInt(matcher.group("damage"));
-            int level = Integer.parseInt(matcher.group("uplevel"));
+            int level = Integer.parseInt(matcher.group("upLevel"));
             int cost = Integer.parseInt(matcher.group("cost"));
             Card newCard = new Card(name, attack, plDamage, duration, false, -1, level, false, cost, 0);
             newCard.setAdmin(true);
             adminCards.add(newCard);
+            dataBaseController.addCard(newCard);
             return "Card added successfully.";
         }
         catch (Exception e){

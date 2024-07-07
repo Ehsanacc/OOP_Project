@@ -7,7 +7,7 @@ question pick -q 2 -a red -c red
 user create -u helia -p Esfahani_80 -r Esfahani_80 -e m@t.com -n khab
 question pick -q 3 -a nmd -c nmd
 
-user login -u Ehsan -p Merrikhi_21
+user login -u Ehsan -p Merrikhi_81
 
 
 ban user in login section

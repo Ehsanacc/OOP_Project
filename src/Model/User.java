@@ -19,6 +19,12 @@ public class User {
     private int clanCode;
     private boolean didClanWar=false;
     private boolean gotGiftPack=false;
+    private static String adminPass="admin_Pass00";
+
+    public static String getAdminPass() {
+        return adminPass;
+    }
+
     ArrayList<Card> cards = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
 

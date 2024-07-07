@@ -28,6 +28,8 @@ public class RegisterMenu extends Menu{
             registerController.forgotPassword(matcher);
         else if ((matcher = getCommandMatcher(input, Commands.adminLog.regex)) != null)
             registerController.logInAdmin(matcher,true);
+        else
+            System.out.println("invalid command!");
 
         return false;
     }
@@ -42,6 +44,7 @@ public class RegisterMenu extends Menu{
                     \t2- user create -u <username> -p random –e <email> -n <nickname>
                     \t3- user login -u <username> -p <password>
                     \t4- Forgot my password -u <username>
+                    \t5- login admin <password>
                     """);
             input = scanner.nextLine();
             boolean exit = checkCommandAndExit(input);

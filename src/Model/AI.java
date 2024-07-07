@@ -39,7 +39,7 @@ public class AI extends User{
                 System.out.println("Starting next round");
                 defeats++;
                 GameMenu gameMenu=new GameMenu();
-                gameMenu.setAi(true);
+//                gameMenu.setAi(true);
                 gameMenu.run();
                 break;
         }

@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterController {
-    private int failedAttempts;
-    private LocalDateTime lastFailedAttemptTime;
+    private static int failedAttempts;
+    private static LocalDateTime lastFailedAttemptTime;
     private static final int BAN_MULTIPLIER = 5; // multiplier in seconds
     public RegisterController(){
         DataBaseController dataBaseController = new DataBaseController();
@@ -117,7 +117,7 @@ public class RegisterController {
             System.out.println("your password is a little weak try to strengthen it");
             System.out.println("your password should have the following conditions to be considered strong:");
             System.out.println("\tcontain at least 8 characters\n"+
-                    "\tcontain at least one lowercase letter, one uppercase letter, and one underscore");
+                    "\tcontain at least one lowercase letter, one uppercase letter, and one sign");
             return false;
         }
         else if (!password.equals(confirmPassword)){
@@ -180,8 +180,10 @@ public class RegisterController {
         String captcha = captchscii.getCaptcha();
         String trueAns = captchscii.getTrueStr();
         System.out.println("you need to answer this captcha correctly to create the user");
+        System.out.println(captcha);
+        System.out.println(trueAns);
         String ans = scanner.nextLine();
-        if (ans.equals(trueAns))
+        if (ans.equalsIgnoreCase(trueAns))
             System.out.println("Answered Captcha correctly.\nUser created!");
         else {
             System.out.println("Wrong Captcha! you will be sent to start as a punishment");
@@ -274,6 +276,7 @@ public class RegisterController {
             User.setOpponent(user);
         }
     }
+
     private boolean isUserBanned() {
         if (lastFailedAttemptTime == null) {
             return false;
@@ -298,15 +301,16 @@ public class RegisterController {
             String password = matcher.group("pass");
             User user = null;
 
-            user = findUser("Admin", password);
+
             // TODO: implement the ban system when the user makes a mistake in logging in
-            if (user == null) {
+            if (!password.equals(User.getAdminPass())) {
                 System.out.println("Admin login unsuccessfully");
                 user=prevUser;
                 registerMenu.run();
             }
-            User.setLoggedInUser(user);
-            System.out.println(User.getLoggedInUser().getUserName());
+//            User.setLoggedInUser(user);
+//            System.out.println(User.getLoggedInUser().getUserName());
+            System.out.println("Admin logged in");
             new AdminMenu().run();
         }
     }

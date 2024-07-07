@@ -4,41 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Database/db.db-journal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inp.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Model/UserShow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="jjj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseController/DataBaseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/db.db-journal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inp.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/slf4j-api-1.7.36.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/sqlite-jdbc-3.46.0.0.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProgramController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ShopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ShopController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Enum/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Clan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Clan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/History.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/History.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/SpecialCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/SpecialCards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ClanMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ClanMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/Captchscii.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Captchscii.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/HistoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/HistoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ProfileMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShopMenu.java" afterDir="false" />
@@ -146,8 +128,17 @@
       <workItem from="1720358170456" duration="1055000" />
       <workItem from="1720359247981" duration="1142000" />
       <workItem from="1720360407454" duration="3400000" />
-      <workItem from="1720363861802" duration="2814000" />
+      <workItem from="1720363861802" duration="7292000" />
+      <workItem from="1720378182992" duration="6898000" />
     </task>
+    <task id="LOCAL-00001" summary="jjj">
+      <created>1720370488574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720370488574</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,5 +157,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="jjj" />
+    <option name="LAST_COMMIT_MESSAGE" value="jjj" />
   </component>
 </project>

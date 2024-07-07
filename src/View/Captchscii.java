@@ -2,12 +2,13 @@ package View;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Random;
 
 public class Captchscii {
-    private String filepath = "D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/src/View/digits.txt";
+//    private String filepath = Captchscii.class.get+"digits.txt";
     private int length;
     private String captcha;
     private String trueStr;
@@ -17,7 +18,15 @@ public class Captchscii {
         trueStr = "";
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get(filepath));
+            String javaFilePath = Captchscii.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+//            Path javaFileDirectory = Paths.get(javaFilePath).getParent();
+
+//            "D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/src/View/digits.txt"
+            // Create the absolute path to the digits.txt file
+//            Path filePath = javaFileDirectory.resolve(javaFilePath+"/digits.txt");
+//            String filepath = (javaFilePath+"digits.txt").substring(1).replaceAll("^\\$", "/");
+//            System.out.println(filepath);
+            List<String> lines = Files.readAllLines(Paths.get("D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/src/View/digits.txt"));
 
             int[] randomLines = new int[length];
             Random rand = new Random();

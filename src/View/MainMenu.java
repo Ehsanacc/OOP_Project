@@ -26,6 +26,8 @@ public class MainMenu extends Menu{
             new AdminMenu().run();
         else if (input.trim().equals("-Main Menu"))
             new MainMenu().run();
+        else
+            System.out.println("invalid command!");
         return false;
     }
 

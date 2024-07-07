@@ -9,21 +9,24 @@ import java.util.regex.Matcher;
 public class GameMenu extends Menu{
     Matcher matcher;
     AI opp;
-    public boolean isAi() {
-        return ai;
-    }
-
-    public void setAi(boolean ai) {
-        this.ai = ai;
-    }
-
-    boolean ai=false, aiTurn;
+    boolean ai, aiTurn;
     GameController gameController=new GameController();
-    AI oppF=new AI(gameController);
-
+    public GameMenu(){
+        this.ai=false;
+        this.aiTurn=false;
+        this.gameController=new GameController();
+    }
     @Override
     public void run() {
+        gameController=new GameController();
         String input;
+        System.out.println("Welcome to the Game Menu.");
+        System.out.println("""
+                    Select game mode:
+                    \t1-One player
+                    \t2-Two players
+                    \t3-Clan war
+                    \t4-Place a bet""");
         while (true) {
             if (aiTurn) {
                 input=opp.selCard(gameController.getBoard1(), gameController.getBoard2());
@@ -31,7 +34,7 @@ public class GameMenu extends Menu{
             }
             else {
                 input = scanner.nextLine();
-                aiTurn=true;
+                if (ai) aiTurn=true;
             }
             boolean exit = checkCommandAndExit(input);
             if (exit)
@@ -41,7 +44,6 @@ public class GameMenu extends Menu{
 
     @Override
     protected boolean checkCommandAndExit(String input) {
-        gameController=new GameController();
         if (input.equals("-exit")) {
             System.exit(0);
         }
@@ -58,18 +60,13 @@ public class GameMenu extends Menu{
         else if ((matcher = getCommandMatcher(input, Commands.selectMode.regex)) != null){
             if (matcher.group("number").equals("1")){
                 ai=true;
-                opp=oppF;
+                opp=new AI(gameController);
                 User.setOpponent(opp);
                 aiTurn=(gameController.getPlayer().equals(User.getOpponent()));
             }
             if (matcher.group("number").equals("3")){
                 ClanMenu clanMenu=new ClanMenu();
                 clanMenu.run();
-            }
-            if (matcher.group("number").equals("2")){
-                ai=false;
-                opp= (AI) User.getOpponent();
-
             }
             System.out.println(gameController.selectModes(matcher));
         }
@@ -84,15 +81,10 @@ public class GameMenu extends Menu{
             System.out.println(gameController.betting(matcher));
         }
         else if ((matcher = getCommandMatcher(input, Commands.startGame.regex)) != null){
-            System.out.println("""
-                    Select game mode:
-                    1-One player
-                    2-Two players
-                    3-Clan war
-                    4-Place a bet""");
+            System.out.println(gameController.startGame());
         }
         else
             System.out.println("invalid command");
-    return false;
+        return false;
     }
 }

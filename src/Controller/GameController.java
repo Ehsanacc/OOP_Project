@@ -13,12 +13,6 @@ public class GameController {
     private Card extra1, extra2;
     private boolean four1, four2, hide1, hide2;
 
-    public GameController(){
-        startGame();
-        User.getLoggedInUser().setHP(100);
-        User.getOpponent().setHP(100);
-    }
-
     public String selectModes(Matcher matcher){
         String output = "";
         String invalid="Invalid command";
@@ -30,7 +24,7 @@ public class GameController {
             return invalid;
         }
         if (m%2==0){
-            output="Opponent log in.";
+            output="Opponent should log in now.";
         }
         if (m==4) betAmount=-1;
         return output;
@@ -67,11 +61,17 @@ public class GameController {
         if (p==1){
             User.getLoggedInUser().setCharacter(c);
             output=User.getLoggedInUser().getNickname()+" chose character number "+c;
+            if (User.getOpponent().getCharacter()==0)
+                return output+"\n"+User.getOpponent().getNickname()+" choose your character from 1, 2, 3, 4";
         }
         else{
             User.getOpponent().setCharacter(c);
             output=User.getOpponent().getNickname()+" chose character number "+c;
+            if (User.getLoggedInUser().getCharacter()==0)
+                return output+"\n"+User.getLoggedInUser().getNickname()+" choose your character from 1, 2, 3, 4";
         }
+        startGame();
+        output+="\nStart the game?";
         return output;
     }
 
@@ -86,10 +86,10 @@ public class GameController {
             return invalid;
         }
         if (User.getLoggedInUser().getGold()<b){
-            output=User.getLoggedInUser().getNickname()+"doesn't have "+b+" to bet";
+            output=User.getLoggedInUser().getNickname()+" doesn't have "+b+" to bet";
         }
         else if ( User.getOpponent().getGold()<b){
-            output=User.getOpponent().getNickname()+"doesn't have "+b+" to bet\nGive another number";
+            output=User.getOpponent().getNickname()+" doesn't have "+b+" to bet\nGive another number";
         }
         else {
             betAmount=b;
@@ -308,20 +308,20 @@ public class GameController {
         int dur= card.getDuration();
         for (int i = b; i < b+dur; i++) {
             board1[i-1]= card;
-            if (board2[i-1]!=null || !board2[i-1].getName().equals("hole")){
-                Card card1=board2[i-1];
-                if (card1.getName().equals("healer")) continue;
-                if (card1.getPoint()> card.getPoint() && card1.getDamage()!=0){
-                    board1[i-1].setDamage(0);
-                }
-                else if (card1.getPoint()< card.getPoint()){
-                    damages[1]-=card1.getDamage()/card1.getDuration();
-                    board2[i-1].setDamage(0);
-                }
-                else{
-                    damages[1]-=card1.getDamage()/card1.getDuration();
-                    board2[i-1].setDamage(0);
-                    board1[i-1].setDamage(0);
+            if (board2[i-1]!=null ){
+                if (!board2[i-1].getName().equals("hole")) {
+                    Card card1 = board2[i - 1];
+                    if (card1.getName().equals("healer")) continue;
+                    if (card1.getPoint() > card.getPoint() && card1.getDamage() != 0) {
+                        board1[i - 1].setDamage(0);
+                    } else if (card1.getPoint() < card.getPoint()) {
+                        damages[1] -= card1.getDamage() / card1.getDuration();
+                        board2[i - 1].setDamage(0);
+                    } else {
+                        damages[1] -= card1.getDamage() / card1.getDuration();
+                        board2[i - 1].setDamage(0);
+                        board1[i - 1].setDamage(0);
+                    }
                 }
             }
             damages[0]+=card.getDamage()/card.getDuration();
@@ -379,7 +379,9 @@ public class GameController {
         return output;
     }
 
-    private void startGame(){
+    public String startGame(){
+        round1=4;
+        round2=4;
         board1=new Card[21];
         board2=new Card[21];
         hole1=random.nextInt(21);
@@ -388,6 +390,8 @@ public class GameController {
         board2[hole2]=new Card("hole");
         battleDeck1=setBattleDeck(5, User.getLoggedInUser());
         battleDeck2=setBattleDeck(5, User.getOpponent());
+        User.getLoggedInUser().setHP(100);
+        User.getOpponent().setHP(100);
         //probability is 2 to 1
         if (random.nextInt(6)>1){
             player=User.getLoggedInUser();
@@ -401,6 +405,16 @@ public class GameController {
         four2=false;
         hide1=false;
         hide2=false;
+        User guest= User.getOpponent();
+        User host= User.getLoggedInUser();
+        int c=9;
+        StringBuilder div2=new StringBuilder(repeat('#', 21*c));
+        StringBuilder div=new StringBuilder(repeat('*', 21*c));
+        return "The game has started.\n"+player.getNickname()+" starts\n" + div2 + "\n" +
+                printBattleDeck(guest, battleDeck2, extra2, four2, hide2) + div + "\n" +
+                printBoard(board2, round2, guestDamage) + div + "\n" +
+                printBoard(board1, round1, hostDamage) + div + "\n" +
+                printBattleDeck(host, battleDeck1, extra1, four1, hide1) + div2 + "\n";
     }
 
     public String nextRound(){
@@ -426,7 +440,7 @@ public class GameController {
         int n=8;
         String div = String.valueOf(repeat('*', 21 * 9));
         StringBuilder output=new StringBuilder();
-        output.append("Guest: \"").append(user.getUserName()).append("\", Character: \"").append(user.getCharacter());
+        output.append("Guest: \"").append(user.getNickname()).append("\", Character: \"").append(user.getCharacter());
         output.append("\", hit-point: \"").append(user.getHP()).append("\", Battle Deck:\n");
         output.append(div).append("\n").append('|');
         int count=5, c=2;
@@ -464,12 +478,11 @@ public class GameController {
         if (!hide) {
             for (int i = 0; i < count; i++) {
                 c = 2;
-                if (battleDeck[i].getDamage() < 10) c = 1;
-                output.append("DMG= ").append(battleDeck[i].getDamage()).append(repeat(' ', n - 5 - c)).append('|');
+                output.append("DMG= ").append(battleDeck[i].getDamage()).append(repeat(' ', n - 7)).append('|');
             }
             if (extra != null) {
                 if (extra.getDamage() < 10) c = 1;
-                output.append("DMG= ").append(extra.getDamage()).append(repeat(' ', n - 5 - c)).append('|');
+                output.append("DMG= ").append(extra.getDamage()).append(repeat(' ', n - 7)).append('|');
             }
         }
         output.append("\n").append('|');
@@ -512,17 +525,16 @@ public class GameController {
                     output.append(repeat(' ', c)).append('|');
                 }
                 else{
-                    int dmg=board[i].getDamage()/board[i].getDuration();
+                    int dmg=board[i].getDamage();
                     s=2;
-                    if (dmg<10) s=1;
-                    output.append("DMG= ").append(dmg).append(repeat(' ', c-5-s)).append('|');
+                    output.append("DMG= ").append(dmg).append(repeat(' ', c-7)).append('|');
                 }
             }
             else{
                 output.append(repeat(' ', c)).append('|');
             }
         }
-        output.append("\n");
+        output.append('|').append("\n");
         return output;
     }
 

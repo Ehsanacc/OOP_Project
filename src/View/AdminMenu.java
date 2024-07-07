@@ -12,7 +12,7 @@ public class AdminMenu extends Menu{
         if ((matcher=getCommandMatcher(input,Commands.newCard.regex))!=null){
             System.out.println(adminController.newCard(matcher));
         } else if ((matcher =getCommandMatcher(input, Commands.showCards.regex))!=null) {
-            System.out.println(adminController.showCards());
+            adminController.showCards();
         } else if ((matcher=getCommandMatcher(input,Commands.showCard.regex))!=null){
             System.out.println(adminController.showCard(matcher));
         } else if ((matcher =getCommandMatcher(input,Commands.editCard.regex))!=null) {
@@ -21,7 +21,9 @@ public class AdminMenu extends Menu{
             adminController.deleteCard(matcher);
         } else if ((matcher=getCommandMatcher(input,Commands.showPlayers.regex))!=null){
             adminController.seePlayers();
-        }
+        } else if ((matcher =getCommandMatcher(input,Commands.back.regex))!=null) {
+            new RegisterMenu().run();
+        } else System.out.println("invalid");
         return false;
     }
 }
