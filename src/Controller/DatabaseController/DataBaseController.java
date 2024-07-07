@@ -36,10 +36,10 @@ public class DataBaseController {
             Statement st = connection.createStatement();
             st.executeUpdate(query);
         } catch (Exception e) {
-            System.out.println("exception in insertUser in Database \n" + e.getMessage());
+            System.out.println("Either user was already added \tor \t"+e.getMessage());
         }
-
-        GiftPack(user);
+        if (!user.isGotGiftPack())
+            GiftPack(user);
         System.out.println("And here");
         createHistory(user.getUserName());
     }
@@ -69,7 +69,7 @@ public class DataBaseController {
     private void GiftPack(User user){
         try {
             String query = "create table if not exists "+user.getUserName()+" " +
-                    "(name text primary key not null , point int, duration int, " +
+                    "(name text primary key , point int, duration int, " +
                     "dmg int, char int, spell bit, required_lvl int, upgrade_cost int, upgraded bit)";
             Statement statement = connection.createStatement();
             statement.execute(query);
@@ -84,6 +84,8 @@ public class DataBaseController {
         uniqueNumbers = getRandomNumbers(5, 21, 30);
         for (Integer i : uniqueNumbers)
             addCardToUser(user, i);
+
+        user.setGotGiftPack(true);
     }
 
     private void addCardToUser(User user, int i){
@@ -91,7 +93,7 @@ public class DataBaseController {
         int point=0, duration=0, dmg=0, ch=0, reqLVL=0, upgrade_cost=0;
         boolean isSpell = false;
         try {
-            String query = "SELECT * FROM cards LIMIT 1 OFFSET "+i+"-1;";
+            String query = "SELECT * FROM cards LIMIT 1 OFFSET "+(i-1)+";";
             Statement statement = connection.createStatement();
             statement.execute(query);
             ResultSet rs = statement.getResultSet();
@@ -109,7 +111,7 @@ public class DataBaseController {
         }
         try {
             String query = "INSERT INTO "+user.getUserName()+" (name, point, duration, dmg, char, spell, required_lvl, upgrade_cost, upgraded)" +
-                    " values ("+name+" , "+point+" , "+duration+" , "+dmg+" , "+ch+" , "+isSpell+" , "+reqLVL+
+                    " values ('"+name+"' , "+point+" , "+duration+" , "+dmg+" , "+ch+" , "+isSpell+" , "+reqLVL+
                     " , "+upgrade_cost+" , "+0+");";
             Statement statement = connection.createStatement();
             statement.execute(query);
@@ -117,7 +119,7 @@ public class DataBaseController {
             System.out.println(e.getMessage());
         }
         ArrayList<Card> cards = user.getCards();
-        cards.add(new Card(name, point, dmg, duration, isSpell, ch, 0, reqLVL, false, upgrade_cost));
+        cards.add(new Card(name, point, dmg, duration, isSpell, ch, reqLVL, false, upgrade_cost));
         user.setCards(cards);
     }
 
@@ -199,10 +201,11 @@ public class DataBaseController {
     }
 
     public void startApp(){
+//        System.out.println("is it here?");
         ArrayList<User> allUsers = new ArrayList<>();
 //        System.out.println(connection.toString());
         try {
-            String query = "SELECT * FROM main.users ";
+            String query = "SELECT * FROM main.users;";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -217,44 +220,36 @@ public class DataBaseController {
                 int lvl = resultSet.getInt("lvl");
                 int xp = resultSet.getInt("xp");
                 int gold = resultSet.getInt("gold");
-                ArrayList<String> cards = new ArrayList<>();
+                int clanCode = resultSet.getInt("clan_code");
+                ArrayList<Card> cards = new ArrayList<>();
 
-                String queryCards = "select * from user_cards where username = "+username;
+                String queryCards = "select * from "+username+" ;";
                 Statement statementCards = connection.createStatement();
                 ResultSet resultSetCards = statementCards.executeQuery(queryCards);
-
-                int columnCount = resultSetCards.getMetaData().getColumnCount();
-
+                String cardName;
+                int point=0, duration=0, dmg=0, ch=0, reqLvl=0, upCost=0;
+                boolean isSpell=false, upgraded=false;
                 while (resultSetCards.next()) {
-                    cards.clear();
-                    // Start from the second column as the first is 'username'
-                    for (int i = 2; i <= columnCount; i++) {
-                        cards.add(resultSetCards.getString(i));
-                    }
-                }
+                    cardName = resultSetCards.getString("name");
+                    point = resultSetCards.getInt("point");
+                    duration = resultSetCards.getInt("duration");
+                    dmg = resultSetCards.getInt("dmg");
+                    ch = resultSetCards.getInt("char");
+                    isSpell = resultSetCards.getBoolean("spell");
+                    reqLvl = resultSetCards.getInt("required_lvl");
+                    upCost = resultSetCards.getInt("upgrade_cost");
+                    upgraded = resultSetCards.getBoolean("upgraded");
 
-                allUsers.add(new User(username,password,nickname,email,lvl,question,answer,xp,gold,getCardsFromName(cards)));
+                    cards.add(new Card(cardName, point, dmg, duration, isSpell, ch, reqLvl, upgraded, upCost));
+                }
+                allUsers.add(new User(username,password,nickname,email,lvl,question,answer,xp,gold,clanCode,cards));
+
             }
         } catch (SQLException exception){
             System.out.println(exception.getMessage());
         }
-    }
-
-    private ArrayList<Card> getCardsFromName(ArrayList<String> cardNames){
-        ArrayList<Card> cards = new ArrayList<>();
-
-        try {
-            String query = "select * from cards";
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-        } catch (SQLException exception){
-            System.out.println(exception.getMessage());
-        }
-
-        for (String name : cardNames) {
-
-        }
-        return cards;
+        User.setUsers(allUsers);
+//        System.out.println("here is the error");
     }
 
     public void updateUserInDB(User user){
@@ -319,7 +314,7 @@ public class DataBaseController {
         int prize = gameResult.getPrize();
 
         try {
-            String query = "insert into " + "helia" + " (dat, opponentName, won, opponentLvl, prize)"
+            String query = "insert into " + User.getLoggedInUser().getUserName().concat("History")+"" + " (dat, opponentName, won, opponentLvl, prize)"
                     + " values (" + date + " , '" + opponentName + "' , " + won + " , " + opponentLvl + " , " + prize + ");";
             System.out.println(query);
             String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";

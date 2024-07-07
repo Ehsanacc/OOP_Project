@@ -18,6 +18,7 @@ public class User {
     private int character;
     private int clanCode;
     private boolean didClanWar=false;
+    private boolean gotGiftPack=false;
     ArrayList<Card> cards = new ArrayList<>();
     private static ArrayList<User> users = new ArrayList<>();
 
@@ -34,7 +35,7 @@ public class User {
         this.lvl = 1;
     }
 
-    public User(String userName, String password, String nickname, String email, int lvl, String question, String answer, int XP, int gold, ArrayList<Card> cards) {
+    public User(String userName, String password, String nickname, String email, int lvl, String question, String answer, int XP, int gold, int clanCode, ArrayList<Card> cards) {
         this.userName = userName;
         Password = password;
         this.nickname = nickname;
@@ -44,6 +45,7 @@ public class User {
         this.answer = answer;
         this.XP = XP;
         this.gold = gold;
+        this.clanCode = clanCode;
         this.cards = cards;
     }
 
@@ -267,4 +269,15 @@ public class User {
         return users;
     }
 
+    public boolean isGotGiftPack() {
+        return gotGiftPack;
+    }
+
+    public void setGotGiftPack(boolean gotGiftPack) {
+        this.gotGiftPack = gotGiftPack;
+    }
+
+    public static void setUsers(ArrayList<User> users) {
+        User.users = users;
+    }
 }

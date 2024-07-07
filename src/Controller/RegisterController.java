@@ -18,7 +18,7 @@ public class RegisterController {
     }
     Scanner scanner = new Scanner(System.in);
     RegisterMenu registerMenu = new RegisterMenu();
-    DataBaseController DataBaseController = new DataBaseController();
+    DataBaseController dataBaseController = new DataBaseController();
     // Sign up functions
     public void createUser(Matcher matcher){
         if (User.getLoggedInUser() != null){
@@ -68,7 +68,9 @@ public class RegisterController {
 
         // adding user to app and database
         User.addUser(newUser);
-        DataBaseController.addUser(newUser);
+        dataBaseController.addUser(newUser);
+//        for (User user : User.getUsers())
+//            System.out.println(user.getUserName());
     }
     private Matcher askSecurityQuestion(){
         String input = null;
@@ -185,7 +187,7 @@ public class RegisterController {
 
         // adding user to app and database
         User.addUser(newUser);
-        DataBaseController.addUser(newUser);
+        dataBaseController.addUser(newUser);
     }
     public static String generateRandomPass() {
         String uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -233,6 +235,7 @@ public class RegisterController {
                 registerMenu.run();
 
             User.setLoggedInUser(user);
+            System.out.println(User.getLoggedInUser().getUserName());
         } else {
             if (User.getOpponent() != null){
                 System.out.println("Some other user was already chosen as opponent");
@@ -293,7 +296,7 @@ public class RegisterController {
             newPass = scanner.nextLine();
         }
         user.setPassword(newPass);
-        DataBaseController.updateUserPassword(user.getUserName(), user.getPassword());
+        dataBaseController.updateUserPassword(user.getUserName(), user.getPassword());
     }
     // log out
     public void logOut(){
