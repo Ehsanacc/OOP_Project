@@ -7,12 +7,17 @@ import View.Captchscii;
 import View.GameMenu;
 import View.RegisterMenu;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterController {
+    private int failedAttempts;
+    private LocalDateTime lastFailedAttemptTime;
+    private static final int BAN_MULTIPLIER = 5; // multiplier in seconds
     public RegisterController(){
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.startApp();
@@ -230,11 +235,26 @@ public class RegisterController {
             String password = matcher.group("password");
             User user = null;
 
-            user = findUser(username, password);
             // TODO: implement the ban system when the user makes a mistake in logging in
-            if (user == null)
+            if (isUserBanned()) {
+                long remainingBanTime = getRemainingBanTime();
+                System.out.println("You are banned for another " + remainingBanTime + " seconds.");
                 registerMenu.run();
+            }
 
+            else if ((user = findUser(username, password)) != null) {
+                failedAttempts = 0; // Reset failed attempts
+
+            } else {
+                failedAttempts++;
+                lastFailedAttemptTime = LocalDateTime.now();
+                System.out.println("Invalid credentials. You are banned for " + (failedAttempts * BAN_MULTIPLIER) + " seconds.");
+                registerMenu.run();
+            }
+
+//            if (user == null)
+//                registerMenu.run();
+            // --------------------------------------------------------------------------------
             User.setLoggedInUser(user);
             System.out.println(User.getLoggedInUser().getUserName());
         } else {
@@ -254,6 +274,21 @@ public class RegisterController {
             User.setOpponent(user);
         }
     }
+    private boolean isUserBanned() {
+        if (lastFailedAttemptTime == null) {
+            return false;
+        }
+        long banDuration = failedAttempts * BAN_MULTIPLIER;
+        Duration timeSinceLastAttempt = Duration.between(lastFailedAttemptTime, LocalDateTime.now());
+        return timeSinceLastAttempt.getSeconds() < banDuration;
+    }
+
+    private long getRemainingBanTime() {
+        long banDuration = failedAttempts * BAN_MULTIPLIER;
+        Duration timeSinceLastAttempt = Duration.between(lastFailedAttemptTime, LocalDateTime.now());
+        return banDuration - timeSinceLastAttempt.getSeconds();
+    }
+
     public void logInAdmin(Matcher matcher, boolean callingFromRegister){
         User prevUser=User.getLoggedInUser();
         if (callingFromRegister) {

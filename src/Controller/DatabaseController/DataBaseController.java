@@ -16,7 +16,7 @@ public class DataBaseController {
             // Initialize the connection
             String url = "jdbc:sqlite:D:/Ehsan/studies/uni/sem_6/OOP/Project/Phase_1/MyPart/Database/db.db";
             connection = DriverManager.getConnection(url);
-            connection.setAutoCommit(false);  // Use transactions manually
+            connection.setAutoCommit(false);
 
             // Create the users table
             String query = "CREATE TABLE IF NOT EXISTS users (" +
@@ -262,6 +262,7 @@ public class DataBaseController {
             preparedStatement.setString(2, oldUserName);
             System.out.println(preparedStatement);
             int rowsAffected = preparedStatement.executeUpdate();
+            connection.commit();
 
             if (rowsAffected > 0) {
                 System.out.println("Updated username from " + oldUserName + " to " + newUserName);
@@ -429,9 +430,9 @@ public class DataBaseController {
             cardNames.add(card.getName());
 
         try {
-            String query = "update main.users set main.users.username = "+username+" , main.users.password = "
-                    +password+" , main.users.nickname = "+nickname+" , main.users.email = "+email+
-                    ", main.users.question = "+question+" , main.users.answer = "+answer+" , lvl = "+lvl+
+            String query = "update main.users set main.users.username = '"+username+"' , main.users.password = '"
+                    +password+"' , main.users.nickname = '"+nickname+"' , main.users.email = '"+email+
+                    "', main.users.question = '"+question+"' , main.users.answer = '"+answer+"' , lvl = "+lvl+
                     " , xp = "+xp+" , gold = "+gold+" , clan_code = "+clanCode+" where username = "+username;
             Statement statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -514,6 +515,31 @@ public class DataBaseController {
         } catch (SQLException exception){
             System.out.println(exception.getMessage());
         }
+    }
+
+    public void changeCard(Card card){
+        String cardName = card.getName();
+        int point = card.getPoint();
+        int duration = card.getDuration();
+        int dmg = card.getDamage();
+        int ch = card.getType();
+        boolean spell = card.isSpecial();
+        int reqLvl = card.getRequiredLevel();
+        int upCost = card.getUpgradeCost();
+        int price = card.getPrice();
+        boolean isAdmin = card.isAdmin();
+
+        String query = "update cards set name = '"+cardName+"' , att_def_point = "+point+" , duration = "+duration +
+                " , player_dmg = "+dmg+" , char = "+ch+" , spell = "+spell+" , required_lvl = "+reqLvl+" , upgrade_cost = "+upCost
+                + ", price = "+price+" , isAdmin = "+isAdmin;
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            connection.commit();
+        } catch (SQLException exception){
+            System.out.println(exception.getMessage());
+        }
+
     }
 
 }
