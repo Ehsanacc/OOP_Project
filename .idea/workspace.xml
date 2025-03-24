@@ -7,23 +7,11 @@
     <list default="true" id="9faabe4a-c5fd-4e57-8463-38642c5f1815" name="Changes" comment="jjj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Database/db.db" beforeDir="false" afterPath="$PROJECT_DIR$/Database/db.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/db.db-journal" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/inp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inp.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DatabaseController/DataBaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enum/Commands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enum/Commands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/AI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/AI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AdminMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/Captchscii.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/Captchscii.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/ShopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ShopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Clan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Clan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/ClanMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/ClanMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +70,7 @@
       <recent name="D:\Ehsan\studies\uni\sem 6\OOP\Project\Phase 1\MyPart\src\View" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="MyPart" />
@@ -129,7 +117,8 @@
       <workItem from="1720359247981" duration="1142000" />
       <workItem from="1720360407454" duration="3400000" />
       <workItem from="1720363861802" duration="7292000" />
-      <workItem from="1720378182992" duration="6898000" />
+      <workItem from="1720378182992" duration="7379000" />
+      <workItem from="1720390084853" duration="2834000" />
     </task>
     <task id="LOCAL-00001" summary="jjj">
       <created>1720370488574</created>

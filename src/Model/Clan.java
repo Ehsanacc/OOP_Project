@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 
 public class Clan {
     private User chief;
-
     private ArrayList<User> members = new ArrayList<>();
     private ArrayList<User> oppClanShuffle = new ArrayList<>();
     private ArrayList<User> clanShuffle = new ArrayList<>();
@@ -22,6 +21,19 @@ public class Clan {
         this.chief = chief;
         this.name = name;
         this.code = code;
+    }
+
+    public Clan(User chief, ArrayList<User> members, ArrayList<User> oppClanShuffle, ArrayList<User> clanShuffle, String name, int code, int wins, int defeats, int points, boolean inBattle) {
+        this.chief = chief;
+        this.members = members;
+        this.oppClanShuffle = oppClanShuffle;
+        this.clanShuffle = clanShuffle;
+        this.name = name;
+        this.code = code;
+        this.wins = wins;
+        this.defeats = defeats;
+        this.points = points;
+        this.inBattle = inBattle;
     }
 
     public String joinClan(User user){
@@ -79,5 +91,39 @@ public class Clan {
         return "All in peace for now.";
     }
 
+    public void setMembers(ArrayList<User> members) {
+        this.members = members;
+    }
 
+    public ArrayList<User> getOppClanShuffle() {
+        return oppClanShuffle;
+    }
+
+    public void setOppClanShuffle(ArrayList<User> oppClanShuffle) {
+        this.oppClanShuffle = oppClanShuffle;
+    }
+
+    public ArrayList<User> getClanShuffle() {
+        return clanShuffle;
+    }
+
+    public void setClanShuffle(ArrayList<User> clanShuffle) {
+        this.clanShuffle = clanShuffle;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getDefeats() {
+        return defeats;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public boolean isInBattle() {
+        return inBattle;
+    }
 }

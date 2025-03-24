@@ -520,4 +520,103 @@ public class DataBaseController {
         }
     }
 
+    public void saveClan(Clan clan){
+        ArrayList<User> members = clan.getMembers();
+        ArrayList<User> oppClanShuffle = clan.getOppClanShuffle();
+        ArrayList<User> clanShuffle = clan.getClanShuffle();
+
+        String chiefName = clan.getChief().getUserName();
+        String memberNames = getUserNames(members);
+        String oppClanShuffleNames = getUserNames(oppClanShuffle);
+        String clanShuffleNames = getUserNames(clanShuffle);
+        String clanName = clan.getName();
+        int code = clan.getCode();
+        int wins = clan.getWins();
+        int defeats = clan.getDefeats();
+        int points = clan.getPoints();
+        boolean inBattle = clan.isInBattle();
+
+
+        String query = "insert into clans (" +
+                "chiefName, membersName, oppShuffleName, shuffleName, name, code, wins, defeats, points, inBattle) " +
+                "values ('"+chiefName+"' , '"+memberNames+"' , '"+oppClanShuffleNames+"' , '"+clanShuffleNames+"' , '"
+                +clanName+"' , "+code+" , "+wins+" , "+defeats+" , "+points+" , "+inBattle+");";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+            connection.commit();
+        } catch (SQLException exception){
+            System.out.println("Error in saveClan function");
+            System.out.println(exception.getMessage());
+        }
+    }
+
+    private String getUserNames(ArrayList<User> users){
+        ArrayList<String> userNames = new ArrayList<>();
+        for (User tempUser : users)
+            userNames.add(tempUser.getUserName());
+        return String.join(",",userNames);
+    }
+
+    public Clan getClanFromCode(int clanCode){
+        Clan clan = null;
+        ResultSet rs = null;
+        String query = "select * from clans where code = ?";
+
+        try(PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1,clanCode);
+            statement.execute();
+            connection.commit();
+            rs = statement.getResultSet();
+
+        } catch (SQLException exception){
+            System.out.println("Error in getClanFromCode function");
+            System.out.println(exception.getMessage());
+        }
+
+        return extractClanFromRS(rs);
+    }
+
+    private Clan extractClanFromRS(ResultSet resultSet){
+        String chiefName="", memberNames="", oppClanShuffleNames="", clanShuffleNames="",clanName="";
+        int code=0,wins=0,defeats=0,points=0;
+        boolean inBattle=false;
+        try {
+            chiefName = resultSet.getString("chiefName");
+            memberNames = resultSet.getString("membersName");
+            oppClanShuffleNames = resultSet.getString("oppShuffleName");
+            clanShuffleNames = resultSet.getString("shuffleName");
+            clanName = resultSet.getString("name");
+            code = resultSet.getInt("code");
+            wins = resultSet.getInt("wins");
+            defeats = resultSet.getInt("defeats");
+            points = resultSet.getInt("points");
+            inBattle = resultSet.getBoolean("inBattle");
+
+        } catch (SQLException e){
+            System.out.println("Error in extractClansFromRS\n"+e.getMessage());
+        }
+
+        ArrayList<User> members = getUsersFromUserNames(memberNames);
+        ArrayList<User> oppClanShuffle = getUsersFromUserNames(oppClanShuffleNames);
+        ArrayList<User> clanShuffle = getUsersFromUserNames(clanShuffleNames);
+
+        return new Clan(findUserFromName(chiefName), members, oppClanShuffle, clanShuffle, clanName, code, wins, defeats, points, inBattle);
+    }
+
+    private ArrayList<User> getUsersFromUserNames(String usernames){
+        ArrayList<User> users = new ArrayList<>();
+        String[] userNames = usernames.split(",");
+        for (String name : userNames)
+            users.add(findUserFromName(name));
+        return users;
+    }
+
+    private User findUserFromName(String username){
+        for (User user : User.getUsers())
+            if (user.getUserName().equals(username))
+                return user;
+        return null;
+    }
+
 }

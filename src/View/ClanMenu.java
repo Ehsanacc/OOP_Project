@@ -1,9 +1,11 @@
 package View;
 
+import Controller.DatabaseController.DataBaseController;
 import Model.Clan;
 import Model.User;
 import Enum.Commands;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -49,6 +51,9 @@ public class ClanMenu extends Menu{
         user.setClanCode(clan.getCode());
         user.setGold(user.getGold()-cost);
         clans.add(clan);
+
+        // DB part
+        new DataBaseController().saveClan(clan);
         return "Clan created successfully.";
     }
     public String play(Matcher matcher){
